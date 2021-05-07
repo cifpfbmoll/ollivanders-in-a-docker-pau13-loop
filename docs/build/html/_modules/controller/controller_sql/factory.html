@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>controller.controller_sql.factory &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for controller.controller_sql.factory</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">Api</span>
+
+<span class="c1"># Importamos CORS</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+
+<span class="c1"># Import Resources</span>
+<span class="kn">from</span> <span class="nn">resources.resources_sql.wellcome</span> <span class="kn">import</span> <span class="n">Wellcome</span>
+<span class="kn">from</span> <span class="nn">resources.resources_sql.inventario</span> <span class="kn">import</span> <span class="n">Inventario</span>
+<span class="kn">from</span> <span class="nn">resources.resources_sql.updateQuality</span> <span class="kn">import</span> <span class="n">UpdateQuality</span>
+<span class="kn">from</span> <span class="nn">resources.resources_sql.items</span> <span class="kn">import</span> <span class="n">Items</span>
+<span class="kn">from</span> <span class="nn">resources.resources_sql.quality</span> <span class="kn">import</span> <span class="n">Quality</span>
+<span class="kn">from</span> <span class="nn">resources.resources_sql.sellin</span> <span class="kn">import</span> <span class="n">Sellin</span>
+
+<span class="c1"># Import from Repository the db_connection.py</span>
+<span class="c1"># from repository.db_mock import db_connection_mock</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql</span> <span class="kn">import</span> <span class="n">db_connection</span>
+
+
+<div class="viewcode-block" id="create_app"><a class="viewcode-back" href="../../../controller.controller_sql.html#controller.controller_sql.factory.create_app">[docs]</a><span class="k">def</span> <span class="nf">create_app</span><span class="p">():</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+    <span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+    <span class="c1"># if app.config[&quot;ENV&quot;] == &quot;production&quot;:</span>
+    <span class="c1">#     #Configuration APP Flask</span>
+    <span class="c1">#     app.config.from_object(&quot;config.ProductionConfig&quot;)</span>
+    <span class="c1"># elif app.config[&quot;ENV&quot;] == &quot;testing&quot;:</span>
+    <span class="c1">#     #Configuration APP Flask</span>
+    <span class="c1">#     app.config.from_object(&quot;config.TestingConfig&quot;)</span>
+    <span class="c1"># else:</span>
+    <span class="c1">#     #Configuration APP Flask</span>
+    <span class="c1">#     app.config.from_object(&quot;config.DevelopmentConfig&quot;)</span>
+
+    <span class="c1"># Debido a que este Factory -&gt; create_app() de Flask es para poder testear los resources y ver si funcionan, lo mejor es establecer el &quot;Environment&quot; en TEST y activar el TESTING</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ENV&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;TESTING&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Init the Flask APP</span>
+    <span class="c1"># db_connection_mock.init_app(app)</span>
+    <span class="c1"># Debido a que el APP Flask ya tiene el &quot;Environment&quot;</span>
+    <span class="n">db_connection</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+    <span class="c1"># API REST to be able to test</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">Api</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">catch_all_404s</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Add Resources</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">Wellcome</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">Inventario</span><span class="p">,</span> <span class="s2">&quot;/inventory&quot;</span><span class="p">)</span>
+    <span class="c1"># GET item by name: &#39;/items/name/&lt;string:item_name&gt;&#39;</span>
+    <span class="c1"># POST, DELETE: &#39;/items&#39;</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span>
+        <span class="n">Items</span><span class="p">,</span> <span class="s2">&quot;/items/name/&lt;string:item_name&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;/items&quot;</span><span class="p">,</span> <span class="s2">&quot;/items/id/&lt;int:id_item&gt;/&quot;</span>
+    <span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">Sellin</span><span class="p">,</span> <span class="s2">&quot;/items/sellin/&lt;int:item_sell_in&gt;&quot;</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">Quality</span><span class="p">,</span> <span class="s2">&quot;/items/quality/&lt;int:item_quality&gt;&quot;</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">add_resource</span><span class="p">(</span><span class="n">UpdateQuality</span><span class="p">,</span> <span class="s2">&quot;/update_quality&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">app</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">create_app</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SQLALCHEMY_DATABASE_URI&quot;</span><span class="p">])</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Ollivander_double_db</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

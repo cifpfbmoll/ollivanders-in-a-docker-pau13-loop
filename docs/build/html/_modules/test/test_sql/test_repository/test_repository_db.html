@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test.test_sql.test_repository.test_repository_db &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for test.test_sql.test_repository.test_repository_db</h1><div class="highlight"><pre>
+<span></span><span class="c1"># from repository.db import Database</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">service.service_sql.service</span> <span class="kn">import</span> <span class="n">Service</span>
+
+<span class="kn">from</span> <span class="nn">repository.repository_sql.models.items</span> <span class="kn">import</span> <span class="n">Items</span>
+
+<span class="c1"># Importamos Factory con el createObjectITem()</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.repo</span> <span class="kn">import</span> <span class="n">Factory</span>
+
+
+<div class="viewcode-block" id="test_add_item_db"><a class="viewcode-back" href="../../../../test.test_sql.test_repository.html#test.test_sql.test_repository.test_repository_db.test_add_item_db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">db_test</span>
+<span class="k">def</span> <span class="nf">test_add_item_db</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test if through session we can add an item</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session (SQLAlchemy Object Session): It&#39;s the session object from SQLALchemy Instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span><span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">add_item</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Conjured Mana Cake&quot;</span>
+    <span class="k">assert</span> <span class="n">add_item</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="k">assert</span> <span class="n">add_item</span><span class="o">.</span><span class="n">quality</span> <span class="o">==</span> <span class="mi">8</span></div>
+
+
+<div class="viewcode-block" id="test_get_items_db"><a class="viewcode-back" href="../../../../test.test_sql.test_repository.html#test.test_sql.test_repository.test_repository_db.test_get_items_db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">db_test</span>
+<span class="k">def</span> <span class="nf">test_get_items_db</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test if through session we can get all items</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session (SQLAlchemy Object Session): It&#39;s the session object from SQLALchemy Instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span><span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="c1"># Funciona, pero al parecer no carga los datos que ya están en la base de datos, por lo cual no tiene ninguno, lo que implica que tengo que agregar un nuevo objeto/row</span>
+    <span class="n">items_db</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">items_db</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span></div>
+
+
+<div class="viewcode-block" id="test_delete_item_db"><a class="viewcode-back" href="../../../../test.test_sql.test_repository.html#test.test_sql.test_repository.test_repository_db.test_delete_item_db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">db_test</span>
+<span class="k">def</span> <span class="nf">test_delete_item_db</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test if through session we can delete an item</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session (SQLAlchemy Object Session): It&#39;s the session object from SQLALchemy Instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Añadimos el item</span>
+    <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span><span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="c1"># Ahora lo eliminamos</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+        <span class="n">Items</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">,</span> <span class="n">Items</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">==</span> <span class="mi">5</span><span class="p">,</span> <span class="n">Items</span><span class="o">.</span><span class="n">quality</span> <span class="o">==</span> <span class="mi">8</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="c1"># Verificamos si efectivamente lo ha eliminado si ningún row es igual al que eliminamos, CAMBIARLO y REFACTORIZARLO</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+
+        <span class="k">assert</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;Conjured Mana Cake&quot;</span>
+        <span class="k">assert</span> <span class="n">item</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">!=</span> <span class="mi">5</span>
+        <span class="k">assert</span> <span class="n">item</span><span class="o">.</span><span class="n">quality</span> <span class="o">!=</span> <span class="mi">8</span></div>
+
+
+<div class="viewcode-block" id="test_udpate_quality_items_db"><a class="viewcode-back" href="../../../../test.test_sql.test_repository.html#test.test_sql.test_repository.test_repository_db.test_udpate_quality_items_db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">db_test</span>
+<span class="k">def</span> <span class="nf">test_udpate_quality_items_db</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test if through session we can update the quality of all items</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session (SQLAlchemy Object Session): It&#39;s the session object from SQLALchemy Instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Añadimos el item</span>
+    <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span><span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+
+        <span class="c1"># Creamos el objeto Item a partir de la info de la Lista que insertamos en los párametros del método: createObjectItem()</span>
+        <span class="n">itemObject</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">.</span><span class="n">createObjectItem</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">sell_in</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">quality</span><span class="p">])</span>
+
+        <span class="c1"># Actualizamos la calidad del item</span>
+        <span class="n">itemObject</span><span class="o">.</span><span class="n">update_quality</span><span class="p">()</span>
+
+        <span class="c1"># Actualizamos los datos de cada item</span>
+        <span class="n">item</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">=</span> <span class="n">itemObject</span><span class="o">.</span><span class="n">get_sell_in</span><span class="p">()</span>
+        <span class="n">item</span><span class="o">.</span><span class="n">quality</span> <span class="o">=</span> <span class="n">itemObject</span><span class="o">.</span><span class="n">get_quality</span><span class="p">()</span>
+        <span class="c1"># Guardamos los datos actualizados</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="c1"># Testeamos si efectivamente se actualizo el item</span>
+        <span class="k">assert</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Conjured Mana Cake&quot;</span>
+        <span class="k">assert</span> <span class="n">item</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">==</span> <span class="mi">4</span>
+        <span class="k">assert</span> <span class="n">item</span><span class="o">.</span><span class="n">quality</span> <span class="o">==</span> <span class="mi">6</span></div>
+
+
+<div class="viewcode-block" id="test_get_by_name_db"><a class="viewcode-back" href="../../../../test.test_sql.test_repository.html#test.test_sql.test_repository.test_repository_db.test_get_by_name_db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">db_test</span>
+<span class="k">def</span> <span class="nf">test_get_by_name_db</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test if through session we can get an item by its name</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session (SQLAlchemy Object Session): It&#39;s the session object from SQLALchemy Instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Añadimos el item</span>
+    <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span><span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="c1"># Get el item por su nombre, en este caso como solo hay un item de esa calidad, retornará el del conjured mana cake</span>
+    <span class="n">get_conjured_by_name</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Items</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">get_conjured_by_name</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Conjured Mana Cake&quot;</span>
+    <span class="k">assert</span> <span class="n">get_conjured_by_name</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="k">assert</span> <span class="n">get_conjured_by_name</span><span class="o">.</span><span class="n">quality</span> <span class="o">==</span> <span class="mi">8</span></div>
+
+
+<div class="viewcode-block" id="test_get_by_sellin_db"><a class="viewcode-back" href="../../../../test.test_sql.test_repository.html#test.test_sql.test_repository.test_repository_db.test_get_by_sellin_db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">db_test</span>
+<span class="k">def</span> <span class="nf">test_get_by_sellin_db</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test if through session we can get an item by its sell_in</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session (SQLAlchemy Object Session): It&#39;s the session object from SQLALchemy Instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Añadimos el item</span>
+    <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span><span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="c1"># Get el item por su sell_in, en este caso como solo hay un item de esa calidad, retornará el del conjured mana cake</span>
+    <span class="n">get_conjured_by_sellin</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Items</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">get_conjured_by_sellin</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Conjured Mana Cake&quot;</span>
+    <span class="k">assert</span> <span class="n">get_conjured_by_sellin</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="k">assert</span> <span class="n">get_conjured_by_sellin</span><span class="o">.</span><span class="n">quality</span> <span class="o">==</span> <span class="mi">8</span></div>
+
+
+<div class="viewcode-block" id="test_get_by_quality_db"><a class="viewcode-back" href="../../../../test.test_sql.test_repository.html#test.test_sql.test_repository.test_repository_db.test_get_by_quality_db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">db_test</span>
+<span class="k">def</span> <span class="nf">test_get_by_quality_db</span><span class="p">(</span><span class="n">session</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Test if through session we can get an item by its quality</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        session (SQLAlchemy Object Session): It&#39;s the session object from SQLALchemy Instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Añadimos el item</span>
+    <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span><span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="c1"># Get el item por su calidad, en este caso como solo hay un item de esa calidad, retornará el del conjured mana cake</span>
+    <span class="n">get_conjured_by_quality</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Items</span><span class="o">.</span><span class="n">quality</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">get_conjured_by_quality</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Conjured Mana Cake&quot;</span>
+    <span class="k">assert</span> <span class="n">get_conjured_by_quality</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="k">assert</span> <span class="n">get_conjured_by_quality</span><span class="o">.</span><span class="n">quality</span> <span class="o">==</span> <span class="mi">8</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../../index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Ollivander_double_db</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

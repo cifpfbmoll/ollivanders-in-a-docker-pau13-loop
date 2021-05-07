@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>resources.resources_mongo.item &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for resources.resources_mongo.item</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">Resource</span><span class="p">,</span> <span class="n">reqparse</span>
+<span class="kn">from</span> <span class="nn">service.service_mongo.service</span> <span class="kn">import</span> <span class="n">Service</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">make_response</span><span class="p">,</span> <span class="n">jsonify</span>
+
+
+<div class="viewcode-block" id="Item"><a class="viewcode-back" href="../../../resources.resources_mongo.html#resources.resources_mongo.item.Item">[docs]</a><span class="k">class</span> <span class="nc">Item</span><span class="p">(</span><span class="n">Resource</span><span class="p">):</span>
+
+    <span class="c1"># http://127.0.0.1:5000/item/name/&lt;name&gt;</span>
+    <span class="c1"># Remember type spaces with &#39;%20&#39;</span>
+    <span class="c1"># curl http://127.0.0.1:5000/item/name/&lt;name&gt;</span>
+<div class="viewcode-block" id="Item.get"><a class="viewcode-back" href="../../../resources.resources_mongo.html#resources.resources_mongo.item.Item.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get a list with the items matching the criteria of the name and</span>
+<span class="sd">        makes a custom response object</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (str): name of the item that the user has requested to get</span>
+<span class="sd">            from the data base</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            make_response Object: return a custom response for the request</span>
+<span class="sd">            with the list of items that has matched the criteria of the</span>
+<span class="sd">            request and each item is represented inside the</span>
+<span class="sd">            list as a dictionary&quot;&quot;&quot;</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">jsonify</span><span class="p">((</span><span class="n">Service</span><span class="o">.</span><span class="n">get_item</span><span class="p">(</span><span class="n">name</span><span class="p">))))</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;custom-response&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Items matching name criteria &quot;</span> <span class="s2">&quot;returned&quot;</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;warning&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Custom warning, just appears when &quot;</span> <span class="s2">&quot;it&#39;s a warning&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span></div>
+
+    <span class="c1"># http://127.0.0.1:5000/items?name=new Item2&amp;sell_in=5&amp;quality=5</span>
+    <span class="c1"># curl http://localhost:5000/items -d name=&quot;new Item3&quot;</span>
+    <span class="c1"># -d sell_in=3 -d quality=6</span>
+    <span class="c1"># Put this right after curl to indicate the method you want to use --&gt;</span>
+    <span class="c1"># http://127.0.0.1:5000/items -X POST</span>
+<div class="viewcode-block" id="Item.post"><a class="viewcode-back" href="../../../resources.resources_mongo.html#resources.resources_mongo.item.Item.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add an item to the data base</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            make_response Object: return a custom response for the request</span>
+<span class="sd">            when an item is added&quot;&quot;&quot;</span>
+
+        <span class="n">args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parseRequest</span><span class="p">()</span>
+
+        <span class="n">Service</span><span class="o">.</span><span class="n">post_item</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">jsonify</span><span class="p">(</span><span class="s2">&quot;New item added successfully !&quot;</span><span class="p">))</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;custom-response&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Add an item to the stock&quot;</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">201</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;warning&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Custom warning, just appears when &quot;</span> <span class="s2">&quot;it&#39;s a warning&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span></div>
+
+    <span class="c1"># http://127.0.0.1:5000/items?name=new Item&amp;sell_in=5&amp;quality=5</span>
+    <span class="c1"># curl http://127.0.0.1:5000/items -d name=&quot;new Item&quot; -d sell_in=5 -d</span>
+    <span class="c1"># quality=5</span>
+    <span class="c1"># Put this right after curl to indicate the method you want to use --&gt;</span>
+    <span class="c1"># http://127.0.0.1:5000/items -X DELETE</span>
+<div class="viewcode-block" id="Item.delete"><a class="viewcode-back" href="../../../resources.resources_mongo.html#resources.resources_mongo.item.Item.delete">[docs]</a>    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete an item from the data base</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            make_response Object: return a custom response for the request</span>
+<span class="sd">            when an item is deleted from the data base&quot;&quot;&quot;</span>
+
+        <span class="n">args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parseRequest</span><span class="p">()</span>
+
+        <span class="n">Service</span><span class="o">.</span><span class="n">delete_item</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">jsonify</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;application/json&quot;</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;custom-response&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Delete an item from the &quot;</span> <span class="s2">&quot;stock&quot;</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">204</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;warning&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;Custom warning, just appears when &quot;</span> <span class="s2">&quot;it&#39;s a warning&quot;</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span></div>
+        <span class="c1"># Status response 204 by convention MUST NOT include any body message</span>
+
+    <span class="c1"># Designed to provide simple and uniform access to any variable on the</span>
+    <span class="c1"># flask.request object in Flask</span>
+<div class="viewcode-block" id="Item.parseRequest"><a class="viewcode-back" href="../../../resources.resources_mongo.html#resources.resources_mongo.item.Item.parseRequest">[docs]</a>    <span class="k">def</span> <span class="nf">parseRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># To have the errors bundled together and sent back to the client all</span>
+        <span class="c1"># at once</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">reqparse</span><span class="o">.</span><span class="n">RequestParser</span><span class="p">(</span><span class="n">bundle_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The id of the item is required&quot;</span>
+        <span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the name of the item is required&quot;</span>
+        <span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;sell_in&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The sell in of the item is required&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;quality&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+            <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">help</span><span class="o">=</span><span class="s2">&quot;the quality of the item is required&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># args = parser.parse_args() --&gt; this is a dictionary with the</span>
+        <span class="c1"># specified arguments like keys</span>
+        <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Ollivander_double_db</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

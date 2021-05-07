@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test.test_sql.conftest &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for test.test_sql.conftest</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="c1"># APP Flask Factory</span>
+<span class="kn">from</span> <span class="nn">controller.controller_sql.factory</span> <span class="kn">import</span> <span class="n">create_app</span>
+
+<span class="c1"># Repo.py Factory para poblar la base de datos test</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.models.db_model</span> <span class="kn">import</span> <span class="n">db</span> <span class="k">as</span> <span class="n">_db</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.repo</span> <span class="kn">import</span> <span class="n">Factory</span>
+
+<span class="c1"># Importamos también el modelo</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.models.items</span> <span class="kn">import</span> <span class="n">Items</span>
+
+<span class="c1"># Para la conexión de la DB test, importó el objeto G de Flask</span>
+<span class="c1"># from flask import g</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.db_connection</span> <span class="kn">import</span> <span class="n">init_app</span>
+
+
+<div class="viewcode-block" id="TestConfig"><a class="viewcode-back" href="../../../test.test_sql.html#test.test_sql.conftest.TestConfig">[docs]</a><span class="k">class</span> <span class="nc">TestConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;TestConfig Class: Class with the configuration constants of Testing Envronment of APP Flask&quot;&quot;&quot;</span>
+
+    <span class="c1"># DEBUG debe ser Falso para que no haya error del método SETUP al intentar ejecutar el APP Flask, por ahora es mejor dejarlo en False</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">SQLALCHEMY_TRACK_MODIFICATIONS</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">ENV</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+    <span class="n">TESTING</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+<span class="c1"># @pytest.fixture</span>
+<span class="c1"># def client():</span>
+<span class="c1">#     app = create_app()</span>
+<span class="c1">#     return app.test_client()</span>
+
+<span class="c1"># @pytest.fixture</span>
+<span class="c1"># def client():</span>
+<span class="c1">#     app = create_app()</span>
+
+<span class="c1">#     app.config.from_object(&quot;config.TestingConfig&quot;)</span>
+
+<span class="c1">#     with app.app_context():</span>
+<span class="c1">#         with app.test_client() as client:</span>
+<span class="c1">#             yield client</span>
+
+<span class="c1">#     return app.test_client()</span>
+
+<span class="c1"># scope=&#39;session&#39; tiene un alcance durante todo el proceso de la request</span>
+<span class="c1"># @pytest.yield_fixture(scope=&#39;session&#39;)</span>
+<span class="c1"># @pytest.fixture(scope=&#39;session&#39;)</span>
+<span class="c1"># def app():</span>
+
+<span class="c1">#     app = create_app()</span>
+<span class="c1">#     # Configuro la APP Flask para los TESTS</span>
+<span class="c1">#     app.config.from_object(TestConfig)</span>
+<span class="c1">#     # Le asigno la conexión mysql</span>
+<span class="c1">#     # app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;mysql+pymysql://root:power2021@127.0.0.1/ollivanderstest&#39;</span>
+
+<span class="c1">#     # Abrimos el contexto de la aplicación</span>
+<span class="c1">#     app_contx = app.app_context()</span>
+<span class="c1">#     app_contx.push()</span>
+
+
+<span class="c1">#     yield app</span>
+
+<span class="c1">#     # Elimino el contexto de la Aplicación</span>
+<span class="c1">#     app_contx.pop()</span>
+<span class="c1">#     # with app.app_context():</span>
+
+<span class="c1">#     #     return app</span>
+
+
+<span class="c1"># @pytest.fixture(scope=&#39;session&#39;)</span>
+<span class="c1"># def client(app):</span>
+
+<span class="c1">#     return app.test_client()</span>
+
+
+<span class="c1"># # @pytest.yield_fixture(scope=&#39;session&#39;)</span>
+<span class="c1"># @pytest.fixture(scope=&#39;session&#39;)</span>
+<span class="c1"># def db(app):</span>
+
+<span class="c1">#     # from repository.models.db_model import db</span>
+
+<span class="c1">#     # _db.app = app</span>
+<span class="c1">#     _db.init_app(app)</span>
+<span class="c1">#     # Create all models</span>
+<span class="c1">#     _db.create_all()</span>
+
+<span class="c1">#     # Obtenemos la lista con los items</span>
+<span class="c1">#     # inventario = Factory.loadInventory()</span>
+
+<span class="c1">#     # # Poblamos la Base de datos introduciendo los datos</span>
+<span class="c1">#     # for item in inventario:</span>
+
+<span class="c1">#     #     add_item = Items(name=item[&quot;name&quot;], sell_in=item[&quot;sell_in&quot;], quality=item[&quot;quality&quot;])</span>
+
+<span class="c1">#     #     _db.session.add(add_item)</span>
+<span class="c1">#     #     _db.session.commit()</span>
+
+
+<span class="c1">#     # Return APP FLASK, but we can add more things</span>
+<span class="c1">#     yield _db</span>
+
+<span class="c1">#     _db.session.remove()</span>
+<span class="c1">#     # Eliminó todos los Models</span>
+<span class="c1">#     # _db.drop_all()</span>
+
+<span class="c1"># # Tiene el scope=&#39;function&#39; para que su alcance solo sea cada test</span>
+<span class="c1"># @pytest.fixture(scope=&#39;function&#39;, autouse=True)</span>
+<span class="c1"># def session(db):</span>
+<span class="c1">#     connection = db.engine.connect()</span>
+<span class="c1">#     transaction = connection.begin()</span>
+
+<span class="c1">#     options = dict(bind=connection, binds={})</span>
+<span class="c1">#     session_ = db.create_scoped_session(options=options)</span>
+
+<span class="c1">#     db.session = session_</span>
+
+<span class="c1">#     yield session_</span>
+
+<span class="c1">#     transaction.rollback()</span>
+<span class="c1">#     connection.close()</span>
+<span class="c1">#     session_.remove()</span>
+
+
+<span class="c1"># class DBConnectionTest():</span>
+
+<span class="c1">#     def get_db_test():</span>
+
+<span class="c1">#         # Si la propiedad &quot;db&quot; no está en el objeto G, entonces:</span>
+<span class="c1">#         if &quot;db&quot; not in g:</span>
+
+<span class="c1">#             # SQLite</span>
+<span class="c1">#             # app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;sqlite:///databaseCarpeta/nombreDB.db&#39;</span>
+<span class="c1">#             # MYSQL</span>
+<span class="c1">#             app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;mysql+pymysql://root:power2021@127.0.0.1/ollivanders&#39;</span>
+<span class="c1">#             app.config[&#39;SQLALCHEMY_TRACK_MODIFICATIONS&#39;] = False</span>
+
+<span class="c1">#             # Agrego el current_app con la APP de flask dentro del objeto SQLAlchemy</span>
+<span class="c1">#             db.init_app(app)</span>
+<span class="c1">#             g.db = db</span>
+
+<span class="c1">#             # Agregamos al objeto G, la propiedad ITEMS con el valor del modelo Items</span>
+<span class="c1">#             g.Items = Items</span>
+
+<span class="c1">#             return g.db</span>
+
+
+<div class="viewcode-block" id="app"><a class="viewcode-back" href="../../../test.test_sql.html#test.test_sql.conftest.app">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">app</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Get the APP Flask from the create_app() method from Factory of Controller Package</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        Flask Intance: Yields a APP Flask</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">create_app</span><span class="p">()</span>
+    <span class="k">yield</span> <span class="n">app</span></div>
+
+
+<div class="viewcode-block" id="client"><a class="viewcode-back" href="../../../test.test_sql.html#test.test_sql.conftest.client">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span> <span class="nf">client</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the test_client of APP Flask, where before of Yield sentence, it adds the basic items into database and models with the main goal of each test use this data/items to test it and after each test the data of models and database restart by default. This help us to isolate each test from another test</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        app (Flask instance): APP Flask</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        test_client: Yields a test_client from APP Flask to test our test cases</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">test_client</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
+            <span class="n">_db</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+            <span class="c1"># _db.drop_all()</span>
+            <span class="n">_db</span><span class="o">.</span><span class="n">create_all</span><span class="p">()</span>
+
+            <span class="c1">#         Obtenemos la lista con los items</span>
+            <span class="n">inventario</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">.</span><span class="n">loadInventory</span><span class="p">()</span>
+
+            <span class="c1"># Poblamos la Base de datos introduciendo los datos</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
+                <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">sell_in</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;sell_in&quot;</span><span class="p">],</span> <span class="n">quality</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="n">_db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+                <span class="n">_db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+            <span class="k">yield</span> <span class="n">client</span>
+
+            <span class="n">_db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+            <span class="n">_db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+            <span class="c1"># _db.session.close()</span>
+            <span class="c1"># _db.drop_all()</span>
+
+
+<div class="viewcode-block" id="db"><a class="viewcode-back" href="../../../test.test_sql.html#test.test_sql.conftest.db">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">db</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the Database Object of SQLAlchemy, where before get the _db it&#39;s open the app_context() and init the app in the DB and create all Models, after the Models and database is filled in with the basic items from loadInventory(), after each test the data of models and database restart by default. The scope of this fixture is for each test function</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        app (flask instance): App Flask</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        SQLAlchemy Instance: Yields a SQLAlchemy Object with the session init</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">test_client</span><span class="p">()</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">app</span><span class="o">.</span><span class="n">app_context</span><span class="p">():</span>
+            <span class="n">_db</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+            <span class="c1"># _db.drop_all()</span>
+            <span class="n">_db</span><span class="o">.</span><span class="n">create_all</span><span class="p">()</span>
+
+            <span class="c1">#         Obtenemos la lista con los items</span>
+            <span class="n">inventario</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">.</span><span class="n">loadInventory</span><span class="p">()</span>
+
+            <span class="c1"># Poblamos la Base de datos introduciendo los datos</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
+                <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">sell_in</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;sell_in&quot;</span><span class="p">],</span> <span class="n">quality</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="n">_db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+                <span class="n">_db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+            <span class="k">yield</span> <span class="n">_db</span>
+
+            <span class="n">_db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+            <span class="n">_db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+
+<span class="c1"># Tiene el scope=&#39;function&#39; para que su alcance solo sea cada test</span>
+<div class="viewcode-block" id="session"><a class="viewcode-back" href="../../../test.test_sql.html#test.test_sql.conftest.session">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">,</span> <span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">session</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Session fixture help us to do a transaction SQL for each test of repository test cases, this means that for each test function of repository package, session fixture opens a transaction in SQLAlchemy and Database MySQL where after finished the test, the transaction finished with a rollback, this means that all changes of each test actually don&#39;t affect the models and database at the finished because of Transactions SQL. Due to this fixture is for each test function, then the scope is function and the autouse is True</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        db (SQLAlchemy instance): It&#39;s a SQLALchemy Object</span>
+
+<span class="sd">    Yields:</span>
+<span class="sd">        SQLALchemy session: Yields a session of the SQLAlchemy Object for each test function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">connection</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+    <span class="n">transaction</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+
+    <span class="n">options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">connection</span><span class="p">,</span> <span class="n">binds</span><span class="o">=</span><span class="p">{})</span>
+    <span class="n">session_</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">create_scoped_session</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">options</span><span class="p">)</span>
+
+    <span class="n">db</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session_</span>
+
+    <span class="k">yield</span> <span class="n">session_</span>
+
+    <span class="n">transaction</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+    <span class="c1"># connection.close()</span>
+    <span class="n">session_</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span></div>
+
+
+<span class="c1"># @pytest.fixture</span>
+<span class="c1"># def db(app):</span>
+<span class="c1">#     app.app_context().push()</span>
+<span class="c1">#     _db.init_app(app)</span>
+<span class="c1">#     _db.create_all()</span>
+<span class="c1">#     yield _db</span>
+<span class="c1">#     _db.session.close()</span>
+<span class="c1">#     _db.drop_all()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Ollivander_double_db</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

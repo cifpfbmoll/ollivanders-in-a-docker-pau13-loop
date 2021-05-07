@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>repository.repository_sql.db_connection &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for repository.repository_sql.db_connection</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">g</span>
+
+<span class="c1"># Import current_app for using inside of SQLAlchemy Object</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">current_app</span> <span class="k">as</span> <span class="n">app</span>
+
+<span class="c1"># Click Package</span>
+<span class="kn">import</span> <span class="nn">click</span>
+<span class="kn">from</span> <span class="nn">flask.cli</span> <span class="kn">import</span> <span class="n">with_appcontext</span>
+
+<span class="c1"># Models</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.models.items</span> <span class="kn">import</span> <span class="n">Items</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.models.db_model</span> <span class="kn">import</span> <span class="n">db</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.models.users</span> <span class="kn">import</span> <span class="n">User</span>
+
+<span class="c1"># Factory Class</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.repo</span> <span class="kn">import</span> <span class="n">Factory</span>
+
+
+<div class="viewcode-block" id="get_db"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.db_connection.get_db">[docs]</a><span class="k">def</span> <span class="nf">get_db</span><span class="p">():</span>
+
+    <span class="c1"># Si la propiedad &quot;db&quot; no está en el objeto G, entonces:</span>
+    <span class="k">if</span> <span class="s2">&quot;db&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span><span class="p">:</span>
+
+        <span class="c1"># SQLite</span>
+        <span class="c1"># app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;sqlite:///databaseCarpeta/nombreDB.db&#39;</span>
+        <span class="c1"># MYSQL</span>
+        <span class="c1"># app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;mysql+pymysql://root:power2021@127.0.0.1/ollivanders&#39;</span>
+        <span class="c1"># app.config[&#39;SQLALCHEMY_TRACK_MODIFICATIONS&#39;] = False</span>
+
+        <span class="c1"># En el caso de que el &quot;Environment&quot; del APP de FLASK es TEST, entonces la configuración de conexión a la Base de Datos está dirigida a la Base de datos: &quot;ollivanderstest&quot;</span>
+        <span class="k">if</span> <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ENV&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span>
+
+            <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ENV&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;test&quot;</span>
+            <span class="c1"># Configuration APP Flask</span>
+            <span class="c1"># app.config.from_object(&quot;config.TestingConfig&quot;)</span>
+            <span class="s2">&quot;mysql+pymysql://root:localhost: 3306&quot;</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span>
+                <span class="s2">&quot;SQLALCHEMY_DATABASE_URI&quot;</span>
+            <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;mysql+pymysql://root:root123@127.0.0.1/ollivanderstest&quot;</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SQLALCHEMY_TRACK_MODIFICATIONS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># En el caso contrario de que no sea TEST entonces redirige la conexión a la base de datos &quot;ollivanders&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># SQLite</span>
+            <span class="c1"># app.config[&#39;SQLALCHEMY_DATABASE_URI&#39;] = &#39;sqlite:///databaseCarpeta/nombreDB.db&#39;</span>
+            <span class="c1"># MYSQL</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span>
+                <span class="s2">&quot;SQLALCHEMY_DATABASE_URI&quot;</span>
+            <span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;mysql+pymysql://root:root123@127.0.0.1/ollivanders&quot;</span>
+            <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SQLALCHEMY_TRACK_MODIFICATIONS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Agrego el current_app con la APP de flask dentro del objeto SQLAlchemy</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="n">db</span>
+
+        <span class="c1"># Agregamos al objeto G, la propiedad ITEMS con el valor del modelo Items</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">Items</span> <span class="o">=</span> <span class="n">Items</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">User</span> <span class="o">=</span> <span class="n">User</span>
+
+        <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">db</span></div>
+
+
+<div class="viewcode-block" id="close_db"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.db_connection.close_db">[docs]</a><span class="k">def</span> <span class="nf">close_db</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Si la conexión existe, se cierra.</span>
+    <span class="c1"># Este método lo he visto también en la documentación oficial</span>
+    <span class="c1"># https://flask.palletsprojects.com/en/1.1.x/appcontext/</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;db&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">db</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="init_db"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.db_connection.init_db">[docs]</a><span class="k">def</span> <span class="nf">init_db</span><span class="p">():</span>
+
+    <span class="c1"># Obtenemos la DB</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+    <span class="c1"># Obtenemos la lista con los items</span>
+    <span class="n">inventario</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">.</span><span class="n">loadInventory</span><span class="p">()</span>
+
+    <span class="c1"># Creo todos los Models</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">create_all</span><span class="p">()</span>
+
+    <span class="c1"># Poblamos la Base de datos introduciendo los datos</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">inventario</span><span class="p">:</span>
+
+        <span class="n">add_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">sell_in</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;sell_in&quot;</span><span class="p">],</span> <span class="n">quality</span><span class="o">=</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+
+<span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="s2">&quot;init-db&quot;</span><span class="p">)</span>
+<span class="nd">@with_appcontext</span>
+<span class="k">def</span> <span class="nf">init_db_command</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Comando para la linea de comandos</span>
+<span class="sd">    llamado init-db que invoca a la función init_db&quot;&quot;&quot;</span>
+    <span class="n">init_db</span><span class="p">()</span>
+    <span class="c1"># Mensaje para cuando se ejecute init-db</span>
+    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;Base de datos inicializada en MySQL&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="init_app"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.db_connection.init_app">[docs]</a><span class="k">def</span> <span class="nf">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
+    <span class="c1"># close_db se invoca tras cada request</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">teardown_appcontext</span><span class="p">(</span><span class="n">close_db</span><span class="p">)</span>
+    <span class="c1"># Llamamos al método init_db_command()</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">init_db_command</span><span class="p">)</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Ollivander_double_db</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

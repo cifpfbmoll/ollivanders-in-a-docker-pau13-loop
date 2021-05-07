@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>repository.repository_sql package &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="resources package" href="resources.html" />
+    <link rel="prev" title="repository.repository_mongo.mock_db package" href="repository.repository_mongo.mock_db.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="repository-repository-sql-package">
+<h1>repository.repository_sql package<a class="headerlink" href="#repository-repository-sql-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-repository.repository_sql.FactoryDatabase">
+<span id="repository-repository-sql-factorydatabase-module"></span><h2>repository.repository_sql.FactoryDatabase module<a class="headerlink" href="#module-repository.repository_sql.FactoryDatabase" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-repository.repository_sql.db_connection">
+<span id="repository-repository-sql-db-connection-module"></span><h2>repository.repository_sql.db_connection module<a class="headerlink" href="#module-repository.repository_sql.db_connection" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="repository.repository_sql.db_connection.close_db">
+<code class="sig-prename descclassname"><span class="pre">repository.repository_sql.db_connection.</span></code><code class="sig-name descname"><span class="pre">close_db</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/repository/repository_sql/db_connection.html#close_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.db_connection.close_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="repository.repository_sql.db_connection.get_db">
+<code class="sig-prename descclassname"><span class="pre">repository.repository_sql.db_connection.</span></code><code class="sig-name descname"><span class="pre">get_db</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/repository/repository_sql/db_connection.html#get_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.db_connection.get_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="repository.repository_sql.db_connection.init_app">
+<code class="sig-prename descclassname"><span class="pre">repository.repository_sql.db_connection.</span></code><code class="sig-name descname"><span class="pre">init_app</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/repository/repository_sql/db_connection.html#init_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.db_connection.init_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="repository.repository_sql.db_connection.init_db">
+<code class="sig-prename descclassname"><span class="pre">repository.repository_sql.db_connection.</span></code><code class="sig-name descname"><span class="pre">init_db</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/repository/repository_sql/db_connection.html#init_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.db_connection.init_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-repository.repository_sql.repo">
+<span id="repository-repository-sql-repo-module"></span><h2>repository.repository_sql.repo module<a class="headerlink" href="#module-repository.repository_sql.repo" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="repository.repository_sql.repo.Factory">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">repository.repository_sql.repo.</span></code><code class="sig-name descname"><span class="pre">Factory</span></code><a class="reference internal" href="_modules/repository/repository_sql/repo.html#Factory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.repo.Factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="repository.repository_sql.repo.Factory.createObjectItem">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">createObjectItem</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/repository/repository_sql/repo.html#Factory.createObjectItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.repo.Factory.createObjectItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an Item Object which depends of the name of the Item to asign this item to a Class to create an Object from the Class selected. This method was created by &#64;dfleta from github</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item</strong> (<em>list</em>) – A list that contains the info of a item, which have three element. Example:</p></li>
+<li><p><strong>=</strong><strong> [</strong><strong>'Elixir of the Mongoose'</strong> (<em>item</em>) – </p></li>
+<li><p><strong>5'</strong> (<em>'</em>) – </p></li>
+<li><p><strong>7'</strong><strong>]</strong> (<em>'</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns an Object which the type of this object depends of the Class which was selected from the name of the item</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[Object]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="repository.repository_sql.repo.Factory.loadInventory">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">loadInventory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/repository/repository_sql/repo.html#Factory.loadInventory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.repo.Factory.loadInventory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Let us get the data of some Items from “data_items.csv” file which contains some basic items to insert them into database in other functions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a List where each element it’s a Dictionary which contains the item</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="repository.repository_sql.repo.SingletonOllivanders">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">repository.repository_sql.repo.</span></code><code class="sig-name descname"><span class="pre">SingletonOllivanders</span></code><a class="reference internal" href="_modules/repository/repository_sql/repo.html#SingletonOllivanders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.repo.SingletonOllivanders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="repository.repository_sql.repo.SingletonOllivanders.createStore">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">createStore</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/repository/repository_sql/repo.html#SingletonOllivanders.createStore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#repository.repository_sql.repo.SingletonOllivanders.createStore" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="repository.repository_sql.repo.SingletonOllivanders.instanceOllivanders">
+<code class="sig-name descname"><span class="pre">instanceOllivanders</span></code><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#repository.repository_sql.repo.SingletonOllivanders.instanceOllivanders" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-repository.repository_sql">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-repository.repository_sql" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Ollivander_double_db</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Ollivander_double_db</a><ul>
+  <li><a href="repository.html">repository package</a><ul>
+      <li>Previous: <a href="repository.repository_mongo.mock_db.html" title="previous chapter">repository.repository_mongo.mock_db package</a></li>
+      <li>Next: <a href="resources.html" title="next chapter">resources package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/repository.repository_sql.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

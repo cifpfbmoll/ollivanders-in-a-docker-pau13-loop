@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>repository.repository_sql.repo &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for repository.repository_sql.repo</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Classes that we use for create Object of Items</span>
+<span class="c1"># from domain.Inventory import Inventory</span>
+
+<span class="kn">from</span> <span class="nn">domain.normal_item</span> <span class="kn">import</span> <span class="n">NormalItem</span>
+<span class="kn">from</span> <span class="nn">domain.aged_brie</span> <span class="kn">import</span> <span class="n">AgedBrie</span>
+<span class="kn">from</span> <span class="nn">domain.backstagePasses</span> <span class="kn">import</span> <span class="n">BackstagePasses</span>
+<span class="kn">from</span> <span class="nn">domain.Sulfuras</span> <span class="kn">import</span> <span class="n">Sulfuras</span>
+<span class="kn">from</span> <span class="nn">domain.Conjured</span> <span class="kn">import</span> <span class="n">Conjured</span>
+
+
+<span class="c1"># CSV</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<div class="viewcode-block" id="Factory"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.repo.Factory">[docs]</a><span class="k">class</span> <span class="nc">Factory</span><span class="p">:</span>
+
+    <span class="c1"># @staticmethod</span>
+    <span class="c1"># def loadInventario():</span>
+
+<div class="viewcode-block" id="Factory.loadInventory"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.repo.Factory.loadInventory">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">loadInventory</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Let us get the data of some Items from &quot;data_items.csv&quot; file which contains some basic items to insert them into database in other functions</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (list): Returns a List where each element it&#39;s a Dictionary which contains the item</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">file_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+
+        <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;data_items.csv&quot;</span>
+
+        <span class="n">absolute_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">absolute_file_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csv_file</span><span class="p">:</span>
+            <span class="n">csv_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">csv_file</span><span class="p">)</span>
+
+            <span class="n">inventory</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">csv_reader</span><span class="p">:</span>
+
+                <span class="n">inventory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;sell_in&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="s2">&quot;quality&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])}</span>
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">inventory</span></div>
+
+<div class="viewcode-block" id="Factory.createObjectItem"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.repo.Factory.createObjectItem">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">createObjectItem</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create an Item Object which depends of the name of the Item to asign this item to a Class to create an Object from the Class selected. This method was created by @dfleta from github</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            item (list): A list that contains the info of a item, which have three element. Example:</span>
+<span class="sd">            item = [&#39;Elixir of the Mongoose&#39;, &#39; 5&#39;, &#39; 7&#39;]</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            [Object]: Returns an Object which the type of this object depends of the Class which was selected from the name of the item</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">dictClassesItems</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;Sulfuras Hand of Ragnaros&quot;</span><span class="p">:</span> <span class="s2">&quot;Sulfuras&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Aged Brie&quot;</span><span class="p">:</span> <span class="s2">&quot;AgedBrie&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Backstage passes to a TAFKAL80ETC concert&quot;</span><span class="p">:</span> <span class="s2">&quot;BackstagePasses&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Conjured Mana Cake&quot;</span><span class="p">:</span> <span class="s2">&quot;Conjured&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;+5 Dexterity Vest&quot;</span><span class="p">:</span> <span class="s2">&quot;Conjured&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Normal Item&quot;</span><span class="p">:</span> <span class="s2">&quot;NormalItem&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">itemName</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">classItem</span> <span class="o">=</span> <span class="n">dictClassesItems</span><span class="p">[</span><span class="n">itemName</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">classItem</span> <span class="o">=</span> <span class="n">dictClassesItems</span><span class="p">[</span><span class="s2">&quot;Normal Item&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="n">classItem</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">item</span><span class="p">)))</span></div></div>
+
+
+<div class="viewcode-block" id="SingletonOllivanders"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.repo.SingletonOllivanders">[docs]</a><span class="k">class</span> <span class="nc">SingletonOllivanders</span><span class="p">:</span>
+
+    <span class="n">instanceOllivanders</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="SingletonOllivanders.createStore"><a class="viewcode-back" href="../../../repository.repository_sql.html#repository.repository_sql.repo.SingletonOllivanders.createStore">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">createStore</span><span class="p">():</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">SingletonOllivanders</span><span class="o">.</span><span class="n">instanceOllivanders</span><span class="p">:</span>
+
+            <span class="n">SingletonOllivanders</span><span class="o">.</span><span class="n">instanceOllivanders</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">.</span><span class="n">initRepo</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">SingletonOllivanders</span><span class="o">.</span><span class="n">instanceOllivanders</span></div></div>
+
+
+<span class="c1"># if __name__ == &quot;__main__&quot;:</span>
+
+<span class="c1">#     print(Factory.loadInventory())</span>
+
+<span class="c1">#     itemback = Factory.createObjectItem([&quot;Backstage passes to a TAFKAL80ETC concert&quot;, 10, 20])</span>
+
+<span class="c1">#     print(itemback.get_quality())</span>
+
+<span class="c1">#     print(itemback.__str__())</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Ollivander_double_db</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
