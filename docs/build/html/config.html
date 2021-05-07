@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>config module &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="controller package" href="controller.html" />
+    <link rel="prev" title="app module" href="app.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-config">
+<span id="config-module"></span><h1>config module<a class="headerlink" href="#module-config" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="config.Config">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">config.</span></code><code class="sig-name descname"><span class="pre">Config</span></code><a class="reference internal" href="_modules/config.html#Config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="config.Config.DB_NAME">
+<code class="sig-name descname"><span class="pre">DB_NAME</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ollivanders'</span></em><a class="headerlink" href="#config.Config.DB_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.Config.DB_PASSWORD">
+<code class="sig-name descname"><span class="pre">DB_PASSWORD</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'power2021'</span></em><a class="headerlink" href="#config.Config.DB_PASSWORD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.Config.DB_USERNAME">
+<code class="sig-name descname"><span class="pre">DB_USERNAME</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'root'</span></em><a class="headerlink" href="#config.Config.DB_USERNAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.Config.DEBUG">
+<code class="sig-name descname"><span class="pre">DEBUG</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#config.Config.DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.Config.SECRET_KEY">
+<code class="sig-name descname"><span class="pre">SECRET_KEY</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'secret_key'</span></em><a class="headerlink" href="#config.Config.SECRET_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.Config.SESSION_COOKIE_SECURE">
+<code class="sig-name descname"><span class="pre">SESSION_COOKIE_SECURE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#config.Config.SESSION_COOKIE_SECURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.Config.TESTING">
+<code class="sig-name descname"><span class="pre">TESTING</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#config.Config.TESTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="config.DevelopmentConfig">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">config.</span></code><code class="sig-name descname"><span class="pre">DevelopmentConfig</span></code><a class="reference internal" href="_modules/config.html#DevelopmentConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#config.DevelopmentConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#config.Config" title="config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">config.Config</span></code></a></p>
+<dl class="py attribute">
+<dt id="config.DevelopmentConfig.DB_NAME">
+<code class="sig-name descname"><span class="pre">DB_NAME</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ollivanders'</span></em><a class="headerlink" href="#config.DevelopmentConfig.DB_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.DevelopmentConfig.DB_PASSWORD">
+<code class="sig-name descname"><span class="pre">DB_PASSWORD</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'power2021'</span></em><a class="headerlink" href="#config.DevelopmentConfig.DB_PASSWORD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.DevelopmentConfig.DB_USERNAME">
+<code class="sig-name descname"><span class="pre">DB_USERNAME</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'root'</span></em><a class="headerlink" href="#config.DevelopmentConfig.DB_USERNAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.DevelopmentConfig.DEBUG">
+<code class="sig-name descname"><span class="pre">DEBUG</span></code><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#config.DevelopmentConfig.DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.DevelopmentConfig.SESSION_COOKIE_SECURE">
+<code class="sig-name descname"><span class="pre">SESSION_COOKIE_SECURE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#config.DevelopmentConfig.SESSION_COOKIE_SECURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="config.ProductionConfig">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">config.</span></code><code class="sig-name descname"><span class="pre">ProductionConfig</span></code><a class="reference internal" href="_modules/config.html#ProductionConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#config.ProductionConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#config.Config" title="config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">config.Config</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="config.TestingtConfig">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">config.</span></code><code class="sig-name descname"><span class="pre">TestingtConfig</span></code><a class="reference internal" href="_modules/config.html#TestingtConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#config.TestingtConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#config.Config" title="config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">config.Config</span></code></a></p>
+<dl class="py attribute">
+<dt id="config.TestingtConfig.DB_NAME">
+<code class="sig-name descname"><span class="pre">DB_NAME</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'ollivanders'</span></em><a class="headerlink" href="#config.TestingtConfig.DB_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.TestingtConfig.DB_PASSWORD">
+<code class="sig-name descname"><span class="pre">DB_PASSWORD</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'power2021'</span></em><a class="headerlink" href="#config.TestingtConfig.DB_PASSWORD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.TestingtConfig.DB_USERNAME">
+<code class="sig-name descname"><span class="pre">DB_USERNAME</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'root'</span></em><a class="headerlink" href="#config.TestingtConfig.DB_USERNAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.TestingtConfig.SESSION_COOKIE_SECURE">
+<code class="sig-name descname"><span class="pre">SESSION_COOKIE_SECURE</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#config.TestingtConfig.SESSION_COOKIE_SECURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="config.TestingtConfig.TESTING">
+<code class="sig-name descname"><span class="pre">TESTING</span></code><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#config.TestingtConfig.TESTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Ollivander_double_db</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Ollivander_double_db</a><ul>
+      <li>Previous: <a href="app.html" title="previous chapter">app module</a></li>
+      <li>Next: <a href="controller.html" title="next chapter">controller package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/config.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

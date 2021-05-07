@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>REST ejemplo</title>
+</head>
+
+<body>
+    <button id="inventario">inventario</button>
+
+    <ul id="itemList">
+        <li>Aqui los items...</li>
+    </ul>
+
+    <form class="add-item">
+        <input type="text" name="name" placeholder="Item Name" required/>
+        <input type="text" name="sell_in" placeholder="Sell in" />
+        <input type="text" name="quality" placeholder="Quality" required />
+        <input type="submit" value="Añadir Item" />
+        <input type="reset" value="Reset" />
+        <input type="button" name="delete" value="Eliminar Item" />
+    </form>
+
+    <script>
+
+        // GET
+
+        const inventButton = document.querySelector('#inventario');
+        inventButton.addEventListener("click", inventario);
+
+        function inventario() {
+
+            var miHeaders = new Headers();
+
+            var miInit = { method: 'GET',
+                           headers: miHeaders,
+                           mode: 'cors',
+                           // cambiarlo a force-cache => carga del disco
+                           cache: 'default' };
+
+
+            fetch('http://127.0.0.1:5000/inventory', miInit)
+                .then((response) => {
+                    if(response.ok) {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);
+                        response.json().then((json) => logItems(json))
+                    } else {
+                        console.log("Response Status:", response.status);
+                        console.log("Reponse statuts text:", response.statusText);  
+                    }  
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+        }
+
+        // intentar cachear con la cabecera mirando network de chrome
+
+        function logItems(items) {
+            const itemsList = document.querySelector('#itemList');
+            itemList.innerHTML = items.map((item, i) => {
+                return `
+                <div class="carta" id="item${i}"> 
+                    <div class="contenido">  
+                        <div class="div-icon-user"> 
+                            <img src="{{ url_for('static',filename='img/item_ollivanders.jpg') }}" class="user-icon" alt="">
+                        </div>
+                        <h4> Name: ${item.name} </h4> 
+                        <h5> Sell in: ${item.sell_in} </h5> 
+                        <h5> Quality: ${item.quality} </h5>
+                    </div>
+                </div>
+                        `;
+            }).join('');
+        }
+
+    </script>
+</body>
+
+</html>

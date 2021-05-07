@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ollivander_double_db &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="api module" href="api.html" />
+    <link rel="prev" title="Welcome to Ollivanders-API-REST’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="ollivander-double-db">
+<h1>Ollivanders-API-REST<a class="headerlink" href="#ollivander-double-db"
+                  title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controller.html">controller package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="controller.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="controller.controller_mongo.html">controller.controller_mongo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller.controller_mongo.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller.controller_mongo.html#module-controller.controller_mongo.factory">controller.controller_mongo.factory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller.controller_mongo.html#module-controller.controller_mongo">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="controller.controller_sql.html">controller.controller_sql package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="controller.controller_sql.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller.controller_sql.html#module-controller.controller_sql.factory">controller.controller_sql.factory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="controller.controller_sql.html#module-controller.controller_sql">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html#module-controller">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="domain.html">domain package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain.Conjured">domain.Conjured module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain.FactoryDatabase">domain.FactoryDatabase module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain.IUpdateable">domain.IUpdateable module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain.Inventory">domain.Inventory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain.Sulfuras">domain.Sulfuras module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain.aged_brie">domain.aged_brie module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain.backstagePasses">domain.backstagePasses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain.normal_item">domain.normal_item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html#module-domain">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="repository.html">repository package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="repository.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="repository.repository_mongo.html">repository.repository_mongo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_mongo.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_mongo.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_mongo.html#module-repository.repository_mongo.db_atlas">repository.repository_mongo.db_atlas module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_mongo.html#module-repository.repository_mongo.db_model">repository.repository_mongo.db_model module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_mongo.html#module-repository.repository_mongo.repo">repository.repository_mongo.repo module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_mongo.html#module-repository.repository_mongo">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="repository.repository_sql.html">repository.repository_sql package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_sql.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_sql.html#module-repository.repository_sql.FactoryDatabase">repository.repository_sql.FactoryDatabase module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_sql.html#module-repository.repository_sql.db_connection">repository.repository_sql.db_connection module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_sql.html#module-repository.repository_sql.repo">repository.repository_sql.repo module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="repository.repository_sql.html#module-repository.repository_sql">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html#module-repository">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">resources package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="resources.resources_mongo.html">resources.resources_mongo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_mongo.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_mongo.html#module-resources.resources_mongo.item">resources.resources_mongo.item module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_mongo.html#module-resources.resources_mongo.quality">resources.resources_mongo.quality module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_mongo.html#module-resources.resources_mongo.sell_in">resources.resources_mongo.sell_in module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_mongo.html#module-resources.resources_mongo.stock">resources.resources_mongo.stock module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_mongo.html#module-resources.resources_mongo.update_quality">resources.resources_mongo.update_quality module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_mongo.html#module-resources.resources_mongo.welcome">resources.resources_mongo.welcome module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_mongo.html#module-resources.resources_mongo">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="resources.resources_sql.html">resources.resources_sql package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_sql.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_sql.html#module-resources.resources_sql.inventario">resources.resources_sql.inventario module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_sql.html#module-resources.resources_sql.items">resources.resources_sql.items module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_sql.html#module-resources.resources_sql.quality">resources.resources_sql.quality module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_sql.html#module-resources.resources_sql.sellin">resources.resources_sql.sellin module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_sql.html#module-resources.resources_sql.updateQuality">resources.resources_sql.updateQuality module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_sql.html#module-resources.resources_sql.wellcome">resources.resources_sql.wellcome module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resources.resources_sql.html#module-resources.resources_sql">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#module-resources">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="service.html">service package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="service.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="service.service_mongo.html">service.service_mongo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.service_mongo.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.service_mongo.html#module-service.service_mongo.service">service.service_mongo.service module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.service_mongo.html#module-service.service_mongo">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="service.service_sql.html">service.service_sql package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="service.service_sql.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.service_sql.html#module-service.service_sql.service">service.service_sql.service module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="service.service_sql.html#module-service.service_sql">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="service.html#module-service">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test.html">test package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test.test_domain.html">test.test_domain package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test.test_domain.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_domain.html#module-test.test_domain.test_aged_brie">test.test_domain.test_aged_brie module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_domain.html#module-test.test_domain.test_backstagePasses">test.test_domain.test_backstagePasses module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_domain.html#module-test.test_domain.test_conjured">test.test_domain.test_conjured module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_domain.html#module-test.test_domain.test_inventory">test.test_domain.test_inventory module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_domain.html#module-test.test_domain.test_normal_item">test.test_domain.test_normal_item module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_domain.html#module-test.test_domain.test_sulfuras">test.test_domain.test_sulfuras module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_domain.html#module-test.test_domain">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="test.test_mongo.html">test.test_mongo package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.conftest">test.test_mongo.conftest module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.test_add_item">test.test_mongo.test_add_item module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.test_delete_item">test.test_mongo.test_delete_item module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.test_item">test.test_mongo.test_item module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.test_quality">test.test_mongo.test_quality module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.test_sell_in">test.test_mongo.test_sell_in module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.test_stock">test.test_mongo.test_stock module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.test_update_stock">test.test_mongo.test_update_stock module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo.test_welcome">test.test_mongo.test_welcome module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_mongo.html#module-test.test_mongo">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="test.test_sql.html">test.test_sql package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="test.test_sql.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_sql.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_sql.html#module-test.test_sql.conftest">test.test_sql.conftest module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_sql.html#module-test.test_sql.test_hello_world">test.test_sql.test_hello_world module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="test.test_sql.html#module-test.test_sql">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test.html#module-test">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Ollivander_double_db</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Ollivanders-API-REST’s documentation!</a></li>
+      <li>Next: <a href="api.html" title="next chapter">api module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

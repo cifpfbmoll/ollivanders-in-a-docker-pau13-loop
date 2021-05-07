@@ -1,0 +1,378 @@
+{% extends 'layout.html' %}
+
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+    Register User
+{% endblock %}
+
+{% block nav %}
+
+    <!--Lista con el contenido principal del menú-->
+    <ul class="nav-ul">
+
+        <li>
+            <a href="{{ url_for('home') }}">Home</a>
+        </li>
+
+
+        <li>
+            <a href="{{ url_for('login') }}">Log In</a>
+        </li>
+
+
+    </ul>
+
+
+{% endblock %}
+
+    {% block main %}
+
+    <!--Primer mensaje del index.html-->
+    <h2>Sign Up and begin to use our API</h2>
+
+
+    <!--Imagen que acompaña al h2-->
+    <img src="{{ url_for('static', filename='img/content_img/harry_potter/Flying-phoenix-amico.svg')}}"  class="index-presentation" alt="">
+
+    {% endblock %}
+
+    <!--**************************************-->
+
+
+    {% block section %}
+
+    <!--* FOMULARIO-->
+    <section id="section-form">
+
+
+        <div class="info-div">
+
+
+        </div>
+
+        <!--?????????????????????????-->
+
+
+
+        <div id="form-formulario" class="info-div">
+
+            <img src="{{ url_for('static', filename='img/content_img/svg/wand_star.svg')}}" alt="" width="350px" height="350px">
+
+                <br>
+                <br>
+
+            <h3>
+                Sign Up and Begin to use our API
+            </h3>
+
+
+            <form id="formulario" method="POST" action="/register">
+                <h2>
+                    Sign Up
+                </h2>
+
+                
+                {{ form.hidden_tag() }}
+                <div class="user-password">
+                {{ wtf.form_field(form.username) }}
+                </div>
+
+                <div class="user-password">
+                {{ wtf.form_field(form.password) }}
+                </div>
+
+
+
+                <button class="signup" type="submit">Sign Up</button>
+
+                
+              </form>
+
+            
+            <!--If user already exists -->
+            {% if success %}
+
+            <script>
+                alert("You've been registered successfully!");
+            </script>
+
+            {% endif %}
+
+            <!--If user already exists -->
+            {% if success == False %}
+
+            <script>
+                alert("This user already exists!");
+            </script>
+
+
+            {% endif %}
+
+
+
+        </div>
+
+        <!--?????????????????????????-->
+
+    
+    </section>
+
+    <!--**************************************-->
+
+
+        <!--?????????????????????????-->
+    <!--? Style FORM-->
+    <style>
+
+        /************************* */
+
+
+/************************* */
+/***Formulario Section */
+
+
+#form-formulario {
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+}
+
+#formulario {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+#formulario h3 {
+    margin: 25px;
+}
+
+input {
+
+    height: 40px;
+    background: none;
+    font-size: 15px;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    border: none;
+    outline: none;
+    letter-spacing: 2px;
+    padding: 10px;
+    width: 365px;
+}
+
+label {
+    padding: 15px;
+}
+
+input:focus {
+    border-bottom: 2px solid #fff;
+}
+
+textarea {
+    background: none;
+    height: 100px;
+    padding: 10px 0;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #999;
+    margin-bottom: 55px;
+    width: 365px;
+}
+
+
+textarea:focus,
+input:focus,
+textarea:valid,
+input:valid{
+    border-bottom: 2px solid #49a1f8;
+    top:-12;
+    left:0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 1.5s;
+}
+
+/** Si pasas el mouse por algún enlace del textarea e Input, se sombrea*/
+input:hover,
+textarea:hover {
+    background: #424647;
+    transition: .5s;
+    padding: 6px;
+    border-bottom: 2px solid #49a1f8;
+    border-radius: 8px;
+}
+
+/** DIV envoltorios sobre cada input */
+.user-password {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.checkbox {
+    display: flexbox;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+
+ /** INPUT CHECKBOX */
+
+ /* Customize the label (the container) */
+ .container {
+     margin-top: 50px;
+    display: flexbox;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  } 
+
+
+
+
+
+
+/************************* */
+/** Buttons Style */
+
+button {
+    background: none;
+    color: #cccc;
+    border: 1px solid #49a1f8;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 45px;
+    margin: 10px;
+    margin-left: 140px;
+}
+
+.login {
+    margin-top: 60px;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover {
+    background: #49a1f8;
+    cursor: pointer;
+}
+
+/** Media Query cuando el tamaño es maximo 576px en la sección del formulario */
+
+@media screen and (max-width:576px) { 
+
+    label {
+        font-size: 14px;
+    }
+    
+    input {
+        font-size: 14px;
+        padding: 20px;
+        width: 80%;
+    }
+
+    textarea {
+        font-size: 14px;
+        width: 80%;
+    }
+}
+
+
+
+/************************* */
+
+    </style>
+
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+    <!--?????????????????????????-->
+
+
+    <!--**************************************-->
+    <!--?????????????????????????-->

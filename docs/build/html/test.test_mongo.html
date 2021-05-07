@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test.test_mongo package &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test.test_sql package" href="test.test_sql.html" />
+    <link rel="prev" title="test.test_domain package" href="test.test_domain.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="test-test-mongo-package">
+<h1>test.test_mongo package<a class="headerlink" href="#test-test-mongo-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-test.test_mongo.conftest">
+<span id="test-test-mongo-conftest-module"></span><h2>test.test_mongo.conftest module<a class="headerlink" href="#module-test.test_mongo.conftest" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.conftest.client">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.conftest.</span></code><code class="sig-name descname"><span class="pre">client</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/conftest.html#client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.conftest.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the configuration that we will have to use to be able to run our test cases, with this method we won’t be able to run our test cases</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo.test_add_item">
+<span id="test-test-mongo-test-add-item-module"></span><h2>test.test_mongo.test_add_item module<a class="headerlink" href="#module-test.test_mongo.test_add_item" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.test_add_item.test_add_item">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_add_item.</span></code><code class="sig-name descname"><span class="pre">test_add_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_add_item.html#test_add_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_add_item.test_add_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test that an item has added into the db successfully. Compare the actual stock with an stock that alredy has the new inserted into the db</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo.test_delete_item">
+<span id="test-test-mongo-test-delete-item-module"></span><h2>test.test_mongo.test_delete_item module<a class="headerlink" href="#module-test.test_mongo.test_delete_item" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.test_delete_item.test_delete_item">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_delete_item.</span></code><code class="sig-name descname"><span class="pre">test_delete_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_delete_item.html#test_delete_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_delete_item.test_delete_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test that delete an item from the data base successfully. First we have to add to the db the element that we want to the delete and after this new element has been inserted to the db we can proceed with his deletion from the db. To check the process has been executed successfully it compares the actual stock with an stock that alredy has the new inserted into the db</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo.test_item">
+<span id="test-test-mongo-test-item-module"></span><h2>test.test_mongo.test_item module<a class="headerlink" href="#module-test.test_mongo.test_item" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.test_item.test_item">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_item.</span></code><code class="sig-name descname"><span class="pre">test_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_item.html#test_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_item.test_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to get the elements martching the criteria. The user has to specify the requested name of the elements and the test case check that returns a list with all the elements that match the requested criteria</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test.test_mongo.test_item.test_nonItem">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_item.</span></code><code class="sig-name descname"><span class="pre">test_nonItem</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_item.html#test_nonItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_item.test_nonItem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to get an element from the data base that doen’t exist or doesn’t axist anymore. In case the request element it can’t be found isnide the db will display a message giving information to the user explainig that the requested element it can’t be found isnide the db</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test.test_mongo.test_item.test_nonItemName">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_item.</span></code><code class="sig-name descname"><span class="pre">test_nonItemName</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_item.html#test_nonItemName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_item.test_nonItemName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to get an element without name. If an element from the data base has been request but has not specified the name it will return a message giving information to the user explaining that to get an element from de db has to specify the name of the requested element</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo.test_quality">
+<span id="test-test-mongo-test-quality-module"></span><h2>test.test_mongo.test_quality module<a class="headerlink" href="#module-test.test_mongo.test_quality" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.test_quality.test_quality">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_quality.</span></code><code class="sig-name descname"><span class="pre">test_quality</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_quality.html#test_quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_quality.test_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to get the elements martching the criteria. The user has to specify the requested quality and the test case check that returns a list with all the elements that match the requested criteria</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test.test_mongo.test_quality.test_quality_fail">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_quality.</span></code><code class="sig-name descname"><span class="pre">test_quality_fail</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_quality.html#test_quality_fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_quality.test_quality_fail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to check that if the requested elements by their quality doesn’t match any criteria into the db, in this case it will display a message giving information to the user that the requested elements matching the quality can’t be found inside the db</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo.test_sell_in">
+<span id="test-test-mongo-test-sell-in-module"></span><h2>test.test_mongo.test_sell_in module<a class="headerlink" href="#module-test.test_mongo.test_sell_in" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.test_sell_in.test_sell_in">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_sell_in.</span></code><code class="sig-name descname"><span class="pre">test_sell_in</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_sell_in.html#test_sell_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_sell_in.test_sell_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to get the elements martching the criteria. The user has to specify the requested sell_in and the test case check that returns a list with all the elements that match the requested criteria</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test.test_mongo.test_sell_in.test_sell_in_fail">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_sell_in.</span></code><code class="sig-name descname"><span class="pre">test_sell_in_fail</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_sell_in.html#test_sell_in_fail"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_sell_in.test_sell_in_fail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to check that if the requested elements by their sell_in doesn’t match any criteria into the db, in this case it will display a message giving information to the user that the requested elements matching the sell_in can’t be found inside the db</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo.test_stock">
+<span id="test-test-mongo-test-stock-module"></span><h2>test.test_mongo.test_stock module<a class="headerlink" href="#module-test.test_mongo.test_stock" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.test_stock.test_stock">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_stock.</span></code><code class="sig-name descname"><span class="pre">test_stock</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_stock.html#test_stock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_stock.test_stock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to get all the stock of the data base. This test case check that the default stock match the stock that the data base should contain</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo.test_update_stock">
+<span id="test-test-mongo-test-update-stock-module"></span><h2>test.test_mongo.test_update_stock module<a class="headerlink" href="#module-test.test_mongo.test_update_stock" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.test_update_stock.test_update_stock">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_update_stock.</span></code><code class="sig-name descname"><span class="pre">test_update_stock</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_update_stock.html#test_update_stock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_update_stock.test_update_stock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test to check if the elements from the data base have been update their quality correctly. This test case access to the endpoint with the duty to update the quality of the elements that are included into the db. And after we request the stock included inside the data base. Finally we compare if the stock that we got from the db is equal to the stock that has update the quality of his elements</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo.test_welcome">
+<span id="test-test-mongo-test-welcome-module"></span><h2>test.test_mongo.test_welcome module<a class="headerlink" href="#module-test.test_mongo.test_welcome" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_mongo.test_welcome.test_welcome">
+<code class="sig-prename descclassname"><span class="pre">test.test_mongo.test_welcome.</span></code><code class="sig-name descname"><span class="pre">test_welcome</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_mongo/test_welcome.html#test_welcome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_mongo.test_welcome.test_welcome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test case to check that the default endpoint is configured correctly and the test cases can be run correctly without any issue</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_mongo">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-test.test_mongo" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Ollivander_double_db</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Ollivander_double_db</a><ul>
+  <li><a href="test.html">test package</a><ul>
+      <li>Previous: <a href="test.test_domain.html" title="previous chapter">test.test_domain package</a></li>
+      <li>Next: <a href="test.test_sql.html" title="next chapter">test.test_sql package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/test.test_mongo.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

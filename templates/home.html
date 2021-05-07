@@ -1,0 +1,228 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block nav %}
+
+    <!--Lista con el contenido principal del menú-->
+    <ul class="nav-ul">
+
+
+        {% if session['logged_in'] %}
+
+            <li>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('logout') }}">Log out</a>
+            </li>
+
+        {% else %}
+
+            <li>
+                <a href="{{ url_for('login') }}">Log in</a>
+            </li>
+
+            <li>
+                 <a href="{{ url_for('register') }}">Sign Up</a>
+            </li>
+
+        {% endif%}
+
+    </ul>
+
+{% endblock %}
+
+    {% block main %}
+
+    <!--Primer mensaje del index.html-->
+    <h2>API Ollivanders</h2>
+
+    <!--Imagen que acompaña al h2-->
+    <img src="{{ url_for('static', filename='img/content_img/harry_potter/Flying-phoenix-pana.svg')}}"  class="index-presentation" alt="">
+
+
+    {% endblock %}
+
+    
+        <!--**************************************-->
+
+    
+
+        {% block section %}
+
+        <!--SECTION-->
+    <section class="panel section-slider">
+
+        <!--SLIDER de imagenes, conjunto de imagenes que mediante botones puedes ir apasando de una imagen a otra-->
+        <div class="slider">
+    
+            <!--DIV con la imagenes y los botones-->
+            <div class="imagenes">
+                <input type="radio" name="siguienteImagen" id="img1" checked>
+                <input type="radio" name="siguienteImagen" id="img2">
+                <input type="radio" name="siguienteImagen" id="img3">
+                <input type="radio" name="siguienteImagen" id="img4">
+    
+                <img src="{{ url_for('static', filename='img/content_img/gifs/witch_flying_forest.gif')}}" class="ml1" alt="img1">
+                <img src="{{ url_for('static', filename='img/content_img/gifs/campamento.gif')}}" class="ml2" alt="img2">
+                <img src="{{ url_for('static', filename='img/content_img/gifs/witcher.gif')}}" class="ml3" alt="img3">
+                <img src="{{ url_for('static', filename='img/content_img/gifs/flying-witch_sky.gif')}}" class="ml4" alt="img4">
+            </div>
+    
+            <!--DIV para asociar cada boton con su label, se hace en un DIV aparte debido a que la idea es que mediante el cSS se pueda personalizar los botones-->
+            <div class="puntos">
+                <label for="img1"></label>
+                <label for="img2"></label>
+                <label for="img3"></label>
+                <label for="img4"></label>
+            </div>
+        </div>
+    
+        </section>
+    
+        <!--**************************************-->
+    
+            <!--SECTION-->
+            <section class="section-publicidad">
+    
+                <!--?????????????????????????-->
+    
+                <div class="panel third-panel">
+                    <!--Imagen que acompaña al h2-->
+                    <img src="{{ url_for('static', filename='img/content_img/harry_potter/Witch-rafiki.svg')}}" class="index-presentation" alt="">
+                    <!--h2-->
+                    <h2>Discover the world of Ollivanders Shop and get data to use it in your App</h2>
+                </div>
+    
+                <!--?????????????????????????-->
+    
+            </section>
+    
+        <!--**************************************-->
+    
+            <!--**************************************-->
+    
+        <!--SECTION-->
+        <section class="section-publicidad">
+    
+            <!--?????????????????????????-->
+    
+            <div class="panel">
+    
+                <h2>Get your owns items from Ollivanders Shop and Have your Own Stock of data of your Items</h2>
+    
+                <img src="{{ url_for('static', filename='img/content_img/harry_potter/Flying-phoenix-amico.svg')}}" class="index-presentation" alt="">
+            </div>
+    
+            <!--?????????????????????????-->
+
+        </section>
+
+    <!--?????????????????????????-->
+    <!--? Style Publicidad y Scroll Images -->
+    <style>
+
+        /************************* */
+/************************* */
+/** Section Silder Images */
+
+.section-slider {
+    margin: 70px;
+}
+
+.slider {
+    position: relative;
+    width: 60%;
+    overflow: hidden;
+}
+.imagenes {
+    display: flex;
+    width: 100%;
+}
+.imagenes img {
+    height: 400px;
+    width: 100%;
+    transition: all 0.15s ease;
+    border-radius: 5%;
+}
+.imagenes input {
+    display: none;
+}
+.puntos {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+.puntos label {
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    transition: all 0.17s ease;
+    margin: 10px;
+    border-radius: 50%;
+    border: solid #fff 4px;
+}
+
+.puntos label:hover {background: #49a1f8;}
+#img1:checked ~ .ml1 {
+    margin-left: 0;
+
+}
+#img2:checked ~ .ml2 {
+    margin-left: -100%;
+
+}
+#img3:checked ~ .ml3 {
+    margin-left: -200%;
+
+}
+#img4:checked ~ .ml4 {
+    margin-left: -300%;
+
+}
+
+/** Media Query cuando el tamaño es maximo 526px en la sección de slider de imagenes */
+
+@media screen and (max-width:526px) { 
+
+    .imagenes img {
+        height: 300px;
+        border-radius: 50%;
+    }
+
+}
+
+
+
+/************************* */
+
+
+/************************* */
+
+
+
+
+
+
+    </style>
+
+
+
+    <!--?????????????????????????-->
+
+            {% endblock %}
+        
+        
+    
+        <!--**************************************-->
+
+
+
+
+
+    <!--**************************************-->
+    <!--?????????????????????????-->

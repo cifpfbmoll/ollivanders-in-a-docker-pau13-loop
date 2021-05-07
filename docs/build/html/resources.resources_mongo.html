@@ -1,0 +1,422 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>resources.resources_mongo package &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="resources.resources_sql package" href="resources.resources_sql.html" />
+    <link rel="prev" title="resources package" href="resources.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="resources-resources-mongo-package">
+<h1>resources.resources_mongo package<a class="headerlink" href="#resources-resources-mongo-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-resources.resources_mongo.item">
+<span id="resources-resources-mongo-item-module"></span><h2>resources.resources_mongo.item module<a class="headerlink" href="#module-resources.resources_mongo.item" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_mongo.item.Item">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_mongo.item.</span></code><code class="sig-name descname"><span class="pre">Item</span></code><a class="reference internal" href="_modules/resources/resources_mongo/item.html#Item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.item.Item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py method">
+<dt id="resources.resources_mongo.item.Item.delete">
+<code class="sig-name descname"><span class="pre">delete</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/item.html#Item.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.item.Item.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an item from the data base</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>return a custom response for the request
+when an item is deleted from the data base</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_mongo.item.Item.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'item'</span></em><a class="headerlink" href="#resources.resources_mongo.item.Item.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.item.Item.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/item.html#Item.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.item.Item.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a list with the items matching the criteria of the name and
+makes a custom response object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – name of the item that the user has requested to get</p></li>
+<li><p><strong>the data base</strong> (<em>from</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return a custom response for the request
+with the list of items that has matched the criteria of the
+request and each item is represented inside the
+list as a dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.item.Item.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_mongo.item.Item.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_mongo.item.Item.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'DELETE',</span> <span class="pre">'GET',</span> <span class="pre">'POST'}</span></em><a class="headerlink" href="#resources.resources_mongo.item.Item.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.item.Item.parseRequest">
+<code class="sig-name descname"><span class="pre">parseRequest</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/item.html#Item.parseRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.item.Item.parseRequest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.item.Item.post">
+<code class="sig-name descname"><span class="pre">post</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/item.html#Item.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.item.Item.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an item to the data base</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>return a custom response for the request
+when an item is added</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_mongo.quality">
+<span id="resources-resources-mongo-quality-module"></span><h2>resources.resources_mongo.quality module<a class="headerlink" href="#module-resources.resources_mongo.quality" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_mongo.quality.Quality">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_mongo.quality.</span></code><code class="sig-name descname"><span class="pre">Quality</span></code><a class="reference internal" href="_modules/resources/resources_mongo/quality.html#Quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.quality.Quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_mongo.quality.Quality.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'quality'</span></em><a class="headerlink" href="#resources.resources_mongo.quality.Quality.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.quality.Quality.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_quality</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/quality.html#Quality.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.quality.Quality.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the items from the data base that have the same quality</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item_quality</strong> (<em>int</em>) – quality requested of the item</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return a custom response and display all
+requested items</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.quality.Quality.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_mongo.quality.Quality.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_mongo.quality.Quality.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_mongo.quality.Quality.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_mongo.sell_in">
+<span id="resources-resources-mongo-sell-in-module"></span><h2>resources.resources_mongo.sell_in module<a class="headerlink" href="#module-resources.resources_mongo.sell_in" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_mongo.sell_in.SellIn">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_mongo.sell_in.</span></code><code class="sig-name descname"><span class="pre">SellIn</span></code><a class="reference internal" href="_modules/resources/resources_mongo/sell_in.html#SellIn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.sell_in.SellIn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_mongo.sell_in.SellIn.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'sellin'</span></em><a class="headerlink" href="#resources.resources_mongo.sell_in.SellIn.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.sell_in.SellIn.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_sell_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/sell_in.html#SellIn.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.sell_in.SellIn.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the items from the data base that have the same sell_in</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item_sell_in</strong> (<em>int</em>) – sell_in requested of the item</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return a custom response and display all
+requested items</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.sell_in.SellIn.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_mongo.sell_in.SellIn.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_mongo.sell_in.SellIn.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_mongo.sell_in.SellIn.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_mongo.stock">
+<span id="resources-resources-mongo-stock-module"></span><h2>resources.resources_mongo.stock module<a class="headerlink" href="#module-resources.resources_mongo.stock" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_mongo.stock.Stock">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_mongo.stock.</span></code><code class="sig-name descname"><span class="pre">Stock</span></code><a class="reference internal" href="_modules/resources/resources_mongo/stock.html#Stock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.stock.Stock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_mongo.stock.Stock.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'stock'</span></em><a class="headerlink" href="#resources.resources_mongo.stock.Stock.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.stock.Stock.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/stock.html#Stock.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.stock.Stock.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all the items from the data base</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>return a custom response and display all
+items saved into the data base</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.stock.Stock.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_mongo.stock.Stock.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_mongo.stock.Stock.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_mongo.stock.Stock.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_mongo.update_quality">
+<span id="resources-resources-mongo-update-quality-module"></span><h2>resources.resources_mongo.update_quality module<a class="headerlink" href="#module-resources.resources_mongo.update_quality" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_mongo.update_quality.UpdateQuality">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_mongo.update_quality.</span></code><code class="sig-name descname"><span class="pre">UpdateQuality</span></code><a class="reference internal" href="_modules/resources/resources_mongo/update_quality.html#UpdateQuality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.update_quality.UpdateQuality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_mongo.update_quality.UpdateQuality.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'updatequality'</span></em><a class="headerlink" href="#resources.resources_mongo.update_quality.UpdateQuality.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.update_quality.UpdateQuality.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/update_quality.html#UpdateQuality.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.update_quality.UpdateQuality.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the quality and sell_in from all the items saved into the
+data base and once the process is finished will display all the items
+of the data base updated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>return a custom response and display all
+items saved and updated into the data base</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.update_quality.UpdateQuality.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_mongo.update_quality.UpdateQuality.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_mongo.update_quality.UpdateQuality.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_mongo.update_quality.UpdateQuality.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_mongo.welcome">
+<span id="resources-resources-mongo-welcome-module"></span><h2>resources.resources_mongo.welcome module<a class="headerlink" href="#module-resources.resources_mongo.welcome" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_mongo.welcome.Welcome">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_mongo.welcome.</span></code><code class="sig-name descname"><span class="pre">Welcome</span></code><a class="reference internal" href="_modules/resources/resources_mongo/welcome.html#Welcome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.welcome.Welcome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_mongo.welcome.Welcome.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'welcome'</span></em><a class="headerlink" href="#resources.resources_mongo.welcome.Welcome.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.welcome.Welcome.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_mongo/welcome.html#Welcome.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_mongo.welcome.Welcome.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display greeting from the shop that belongs the software</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>return a custom response and display
+greeting from the shop that belongs the software</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_mongo.welcome.Welcome.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_mongo.welcome.Welcome.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_mongo.welcome.Welcome.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_mongo.welcome.Welcome.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_mongo">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-resources.resources_mongo" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Ollivander_double_db</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Ollivander_double_db</a><ul>
+  <li><a href="resources.html">resources package</a><ul>
+      <li>Previous: <a href="resources.html" title="previous chapter">resources package</a></li>
+      <li>Next: <a href="resources.resources_sql.html" title="next chapter">resources.resources_sql package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/resources.resources_mongo.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

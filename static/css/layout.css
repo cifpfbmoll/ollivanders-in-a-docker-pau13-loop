@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+/** Aplicando la fuente importada y reduciendo el margin y padding*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'DotGothic16', sans-serif;
+}
+
+/* Aplicar flexbox al body*/
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #231e1f;
+    color: white;
+}
+
+main {
+    background-color: #231e1f;
+}
+
+section {
+    width: 100%;
+    background-color: #231e1f;
+}
+
+
+/** ******************************************/
+
+/** HEADER - NAV */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+    width: 100%;
+    padding: 50px;
+    /** Mediante el position, me pertime mantener el HEADER incluso al bajar la página*/
+    position: fixed;
+    top: 0;
+    padding: 20px;
+}
+
+header:after {
+    background:rgba(35, 30, 31, 0.8);
+}
+
+/** Class Titulo con Logotipo */
+.titulo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.titulo h1 {
+    padding: 20px;
+    color: #edf0f1;
+    font-size: 75px;
+}
+
+
+
+/** Si el tamaño de la página es menor a 700px, colocame más pequeño el logotipo y el h1 */
+@media(max-width:700px){
+    .titulo h1 {
+        font-size: 30px;
+        padding-right: 20px;
+    }
+
+}
+
+@media(max-width:797px){
+    .titulo h1 {
+        font-size: 45px;
+        padding-right: 20px;
+    }
+
+}
+
+li, a {
+    font-weight: 500;
+    font-size: 25px;
+    color: #edf0f1;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+/** Si pasas el mouse por algún enlace del NAV, se sombrea*/
+li a:hover {
+    background: #8b9194;
+    transition: .5s;
+    padding: 6px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+
+/** LOGOTIPO */
+.logotipo {
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    margin-right: auto;
+}
+
+
+/** ******************************************/
+
+
+/** Icono Hamburguesa */
+
+.line{
+    width: 45px;
+    height: 6px;
+    background-color: white;
+    margin: 9px;
+    border-radius: 3px;
+}
+
+
+label #btn, label #cancel {
+    display: none;
+    color: white;
+    float: right;
+    margin-right: 40px;
+    cursor: pointer;
+
+}
+
+/** Se coloca display: none ya que solo queremos que la burguer icon aparezca cuando la página es pequeña, donde lo hacemos mediante el siguiente media query*/
+#check {
+    display: none;
+}
+
+/** EN EL CASO DE QUE EL TAMAÑO DE LA PANTALLA SE REDUZCA, MEDIANTE @media
+** COLOCAME EL NAV EN UN "hamburguer NAV"
+*/
+
+@media screen and (max-width:800px) {
+
+    .titulo h1 {
+        font-size: 50px;
+        padding-right: 20px;
+    }
+
+    header {
+        position: fixed;
+        top: 0;
+        padding: 10px;
+        background:rgba(35, 30, 31, 0.8);
+    }
+
+    label #btn {
+        display: block;
+    }
+
+
+    ul{
+        position: fixed;
+        width: 100%;
+        height: 50vh;
+        background: #231e1f;
+        top: 115px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 50px 0;
+        line-height: 30px;
+    }
+
+    nav ul li a {
+        font-size: 20px;
+    }
+
+    #check:checked ~ ul {
+        left:0;
+        padding: 30px;
+
+    }
+
+    #check:checked ~ label #btn {
+        display: none;
+    }
+
+    #check:checked ~ label #cancel {
+        display: block;
+    }
+
+    #check:checked ~ label #cancel img {
+        height: 80px;
+        width: 110px;
+    }
+
+}
+
+/** Media Query cuando el tamaño es maximo 576px en el header sobre la imagen del titulo */
+
+@media screen and (max-width:576px) { 
+
+    header .titulo img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+
+/** ******************************************/
+
+/** ******************************************/
+
+
+/** BACKGROUND GIF */
+.section-first-panel {
+    height:100vh;
+    display:flex;
+    align-items:center;
+    flex-wrap: wrap;
+    color:#fff;
+}
+
+
+.panel{
+    max-width:960px;
+    padding-left:1rem;
+    padding-right:1rem;
+    margin:auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+.panel h2 {
+    padding: 30px;
+}
+
+
+/* Establecemos el GIF como background del primer section */
+.container-gif {
+    position:absolute;
+    /**Para que me permite observar el HEADER NAV encima del GIF*/
+    top:1;
+    left:0;
+    width:100%;
+    height:100vh;
+    /** esto me permite */
+    overflow:hidden;
+}
+
+.container-gif img {
+    min-height:100%;
+    min-width:100%;
+    opacity: 60%;
+}
+
+.first-panel {
+    background: none;
+    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.first-panel h2 {
+    font-size: 170px;
+}
+
+
+/** Imagenes que acompañan a la presentación de index.html */
+.index-presentation {
+    height:auto;
+    width: 370px;
+}
+
+/** Media Query cuando el tamaño es maximo 576px en la sección principal con el main, el gif y el contenido principal */
+
+@media screen and (max-width:576px) { 
+
+    .panel h2{
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .panel img {
+        width: 200px;
+        height: 200px;
+    }
+
+
+    .container-gif img {
+        min-height:100%;
+        min-width:100%;
+        opacity: 60%;
+        width:100%;
+    }
+
+    .first-panel h2{
+        font-size: 20px;
+    }
+
+    .first-panel img{
+        width: 200px;
+        height: 200px;
+    }
+
+}
+
+
+/************************* */
+
+
+/************************* */
+
+
+
+
+/** ******************************************/
+
+/** IMAGEN INTERMEDIA ENTRE SECTIONS SCROLLING */
+.img-scroll {
+    min-height: 400%;
+    position: relative;
+    opacity: 0.80;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 50px;
+    height: 300px;
+}
+
+
+/** ******************************************/
+
+.img-scrolling1 {
+    background-image: url('../img/content_img/gifs/space_revolution2_gif.gif');
+    width: 100%;
+    opacity: 0.40;
+}
+
+.img-scrolling2 {
+    background-image: url('../img/content_img/gifs/space_revolution2_gif.gif');
+    width: 100%;
+    /* position: relative; */
+    opacity: 0.40;
+}
+
+
+/************************* */
+
+

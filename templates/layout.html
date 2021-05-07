@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css')}}">
+    <link rel="shortcut icon"  type="image/svg" href="{{ url_for('static', filename='img/content_img/svg/logo_harry_potter.svg')}}">
+    
+    <title>
+        {% block title %}
+         Ollivanders API
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+    <!--?????????????????????????-->
+    <!--?????????????????????????-->
+    
+    <!--SECTION con header y nav para organizarlo mejor con flexbox en cSS-->
+    <section class="panel section-first-panel">
+
+    
+        <!--HEADER-->
+        <header class="header-index">
+            <!--Enlace para Titulo y Logotipo-->
+        
+            <a href="{{ url_for('home') }}" class="titulo">
+                <img class="logotipo" src="{{ url_for('static', filename='img/content_img/svg/logo_harry_potter.svg')}}" alt="">
+    
+                <h1>
+                    Ollivanders
+                </h1>
+    
+            </a>
+    
+    
+            <!--NAV-->
+            <nav>
+    
+                <!-- Icono de Hamburguesa, para cuando el tamaño de la pantalla sea pequeño-->
+                <input type="checkbox" id="check">
+                <label for="check">
+                    <div id="btn">
+                        <!--Lineas del simbolo de la Hamburguesa, estan vacías obviamente, porque el objetivo es que pueden clickear cuando se haga resposive-->
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+    
+                    <!--Boton de cancelar, aparece para cerrar el menú desplegado-->
+                    <div id="cancel">
+                        <img src="{{ url_for('static', filename='img/content_img/svg/simbolo_eliminar_44.svg')}}" alt="">
+                    </div>
+                </label>
+
+                {% block nav %}
+    
+                <!--Lista con el contenido principal del menú-->
+                <ul class="nav-ul">
+    
+                    <li>
+                        <a href="{{ url_for('login') }}">Log in</a>
+                    </li>
+    
+                    <li>
+                        <a href="{{ url_for('register') }}">Sign Up</a>
+                    </li>
+    
+                </ul>
+
+                {% endblock%}
+    
+            </nav>
+    
+    
+        
+        </header>
+    
+        <!--**************************************-->
+    
+        <!--* Contenedor con el gif de fondo-->
+        <div class="container-gif">
+            <img src="{{ url_for('static', filename='img/content_img/gifs/flying-witch_sky.gif')}}" alt="">
+        </div>
+    
+        <!--**************************************-->
+    
+        
+            <!--MAIN-->
+            <main class="first-panel">
+
+                {% block main %}
+                <!--Primer mensaje del index.html-->
+                    <h2>API Ollivanders</h2>
+                    <!--Imagen que acompaña al h2-->
+                    <img src="{{ url_for('static', filename='img/content_img/harry_potter/Witch-pana.svg')}}"  class="index-presentation" alt="">
+
+                    {% endblock %}
+
+                </main>
+
+        
+    
+    </section>
+
+            <!--**************************************-->
+    
+        <!--IMAGEN DE FONDO SCROLLING, todo se hace en CSS respecto a aestá clase. Por eso este DIV está vacío-->
+        <div class="img-scroll img-scrolling1">
+        </div>
+    
+        
+        <!--**************************************-->
+
+
+
+            {% block section %}
+
+            <div>
+                buenas
+            </div>
+
+            {% endblock %}
+
+
+        
+
+
+                <!--**************************************-->
+    
+        <!--IMAGEN DE FONDO SCROLLING, todo se hace en CSS respecto a aestá clase. Por eso este DIV está vacío-->
+        <div class="img-scroll img-scrolling2">
+        </div>
+    
+        
+        <!--**************************************-->
+
+
+        
+
+        <!--?????????????????????????-->
+        <!--?????????????????????????-->
+
+        <footer>
+
+
+
+            <!--?????????????????????????-->
+
+            <!--LOGOTIPOS QUE APARECEN EN EL FOOTER-->
+            <div class="logotipo-footer">
+                <img src="{{ url_for('static', filename='img/content_img/svg/witcher_hat.svg')}}" alt="">
+                <img src="{{ url_for('static', filename='img/content_img/svg/logo_harry_potter.svg')}}" alt="">
+            </div>
+
+            <!--Contenido footer-->
+            <p class="content-footer">
+            <h3>Company</h3>
+            <span>Politics about our product</span>
+            <span>Teams</span>
+            <span>Support</span>
+            </p>
+
+            <!--REDES SOCIALES-->
+            <div class="redes-sociales box">
+                
+                <p>
+                    <span>
+                        <a href="#">
+                            <img class="iconos" src="{{ url_for('static', filename='img/content_img/svg/facebook.svg')}}" alt="">
+                        </a>
+                    </span>
+
+                    <span>
+                        <a href="#">
+                            <img class="iconos" src="{{ url_for('static', filename='img/content_img/svg/twitter.svg')}}" alt="">
+                        </a>
+                    </span>
+
+                    <span>
+                        <a href="#">
+                            <img  class="iconos" src="{{ url_for('static', filename='img/content_img/svg/instagram.svg')}}" alt="">
+                        </a>
+                    </span>
+
+                </p>
+
+            </div>
+
+
+        <!--?????????????????????????-->
+
+
+
+        </footer>
+
+
+        <style>
+
+
+            /** ******************************************/
+
+/** ******************************************/
+
+
+/** BACKGROUND GIF */
+.section-first-panel {
+    height:100vh;
+    display:flex;
+    align-items:center;
+    flex-wrap: wrap;
+    color:#fff;
+}
+
+
+.panel{
+    max-width:960px;
+    padding-left:1rem;
+    padding-right:1rem;
+    margin:auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+.panel h2 {
+    padding: 30px;
+}
+
+
+/* Establecemos el GIF como background del primer section */
+.container-gif {
+    position:absolute;
+    /**Para que me permite observar el HEADER NAV encima del GIF*/
+    top:1;
+    left:0;
+    width:100%;
+    height:100vh;
+    /** esto me permite */
+    overflow:hidden;
+}
+
+.container-gif img {
+    min-height:100%;
+    min-width:100%;
+    opacity: 60%;
+}
+
+.first-panel {
+    background: none;
+    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.first-panel h2 {
+    font-size: 40px;
+}
+
+/** Imagenes que acompañan a la presentación de index.html */
+.index-presentation {
+    height:auto;
+    width: 370px;
+}
+
+/** Media Query cuando el tamaño es maximo 576px en la sección principal con el main, el gif y el contenido principal */
+
+@media screen and (max-width:576px) { 
+
+    .panel h2{
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .panel img {
+        width: 200px;
+        height: 200px;
+    }
+
+
+    .container-gif img {
+        min-height:100%;
+        min-width:100%;
+        opacity: 60%;
+        width:100%;
+    }
+
+    .first-panel h2{
+        font-size: 20px;
+    }
+
+    .first-panel img{
+        width: 200px;
+        height: 200px;
+    }
+
+}
+
+
+/************************* */
+
+
+/************************* */
+
+
+
+
+/** ******************************************/
+
+/** IMAGEN INTERMEDIA ENTRE SECTIONS SCROLLING */
+.img-scroll {
+    min-height: 400%;
+    position: relative;
+    opacity: 0.80;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 50px;
+    height: 300px;
+}
+
+
+/** ******************************************/
+
+.img-scrolling1 {
+    background-image: url('../img/content_img/gifs/space_revolution2_gif.');
+    width: 100%;
+    opacity: 0.40;
+}
+
+.img-scrolling2 {
+    background-image: url('../img/content_img/gifs/space_revolution2_gif.');
+    width: 100%;
+    /* position: relative; */
+    opacity: 0.40;
+}
+
+
+/************************* */
+
+
+
+            /*********************************************/
+
+
+/****** FOOTER ******************/
+
+footer {
+    background-color:#231e1f;
+    /* background-image: url("../resources/gifs/space_revolution2_gif.gif"); */
+    width:100%;
+    padding-left:1rem;
+    padding-right:1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px;
+}
+
+footer .logotipo-footer img {
+    height: 75px;
+    width: 75px;
+    margin: 30px;
+}
+
+footer p {
+    margin: 30px;
+}
+
+
+footer .content-footer{
+    margin: 0px;
+    padding: 0px 20px;
+    list-style-type: none;
+    display:flex;
+    flex-direction: column;
+
+}
+
+footer h3 {
+    color: #ffffff;
+    font-size: 28px;
+    margin: 8px;
+}
+
+footer p span {
+    font-size:20px;
+}
+
+.content-footer p h3:hover, .content-footer p span:hover {
+
+    color: #9697a0;
+}
+
+/** REDES SOCIALES ICONOS */
+/** *******************************************/
+footer .redes-sociales {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .redes-sociales p {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+footer .redes-sociales p span {
+    list-style: none;
+    margin: 0 10px;
+    height: 60px;
+}
+
+
+footer .redes-sociales p span a img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+footer .redes-sociales p span a {
+
+    /** Display flexbox para acomodar las imagenes de las redes sociales dentro del circulo blanco*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: white;
+    /* text-align: center; */
+    transition: 0.5s;
+    transform: translate(0,0);
+    box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+footer .redes-sociales p span a:hover {
+    /** Esto me permite rotar y trasladar los iconos de redes sociales cuando se pasa sobre estos para conseguir este efecto */
+    transform: rotate(0deg) skew(0deg) translate(0, -10px);
+}
+
+
+/** FACEBOOK color */
+footer .redes-sociales p span:nth-child(1) a:hover {
+    background-color: #3B5999;
+}
+/** TWITTER color */
+footer .redes-sociales p span:nth-child(2) a:hover {
+    background-color: #55ACEE;
+}
+/** INSTAGRAM color */
+footer .redes-sociales p span:nth-child(3) a:hover {
+    background-color: #E4405F;
+}
+
+
+/** Media Query cuando el tamaño es maximo 1047px en la sección de comentarios */
+
+@media screen and (max-width:894px) { 
+
+    footer .logotipo-footer img {
+        height: 55px;
+        width: 55px;
+        margin: 30px;
+    }
+    
+    footer h3 {
+        color: #ffffff;
+        font-size: 24px;
+        margin: 8px;
+    }
+    
+    footer p span {
+        font-size:16px;
+    }
+
+
+    footer .redes-sociales p span a img {
+        width: 35px;
+        height: 35px;
+
+    }
+    
+    footer .redes-sociales p span a {
+
+        width: 45px;
+        height: 45px;
+
+    }
+}
+
+/** Media Query cuando el tamaño es maximo 1047px en la sección de comentarios */
+
+@media screen and (max-width:855px) { 
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+}
+
+
+/**********************************/
+
+        </style>
+</body>
+</html>

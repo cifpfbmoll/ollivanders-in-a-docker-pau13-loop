@@ -1,0 +1,1007 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    DashBoard
+{% endblock %}
+
+{% block nav %}
+
+    <!--Lista con el contenido principal del menú-->
+    <ul class="nav-ul">
+
+        <li>
+            <a href="{{ url_for('home') }}">Home</a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('logout') }}">Log Out</a>
+        </li>
+
+    </ul>
+
+
+{% endblock %}
+
+    {% block main %}
+
+    <!--Primer mensaje del index.html-->
+    <h2>DASHBOARD API</h2>
+
+
+    <!--Imagen que acompaña al h2-->
+    <img src="{{ url_for('static', filename='img/content_img/harry_potter/Flying-phoenix-amico.svg')}}"  class="index-presentation" alt="">
+
+    {% endblock %}
+
+
+
+        <!--**************************************-->
+
+
+
+        {% block section %}
+
+
+        <img src="{{ url_for('static', filename='img/content_img/svg/witcher_flying.svg')}}" alt="" width="350px" height="350px">
+
+                <br>
+                <br>
+
+        <h1>Welcome {{ name }}. This is your Inventory</h1>
+
+        <br>
+
+        <br>
+
+        <!--**************************************-->
+
+        <!--SECTION con los comenarios-->
+        <section id="section-comments">
+
+            <!--?????????????????????????-->
+    
+            <div id="comments" class="info-div">
+    
+    
+                    <div id="listitems">
+
+        
+
+
+                    </div>
+
+                    <div class="buttons-inventory">
+
+
+                    <button id="inventory">See Inventory</button>
+
+                    <button id="update_quality">Updated Inventory</button>
+
+
+                    </div>
+
+                    <br>
+                
+
+                    <!--* FETCHS JAVASCRIPT. RECORDAR, SIEMPRE COLOCAR EL CONTENIDO HTML DENTOR DE LOS BLOCK JINJA, NUNCA FUERA-->
+                    <!-- <script src="../js/fetchs.js"></script> -->
+
+
+            </div>
+
+<!--?????????????????????????-->
+
+        </section>
+
+        <!--**************************************-->
+    
+        <!--IMAGEN DE FONDO SCROLLING, todo se hace en CSS respecto a aestá clase. Por eso este DIV está vacío-->
+        <div class="img-scroll img-scrolling1">
+            <img src="{{ url_for('static', filename='img/content_img/gifs/space_revolution2_gif.gif')}}" alt="" height="160px" >
+        </div>
+    
+        
+        <!--**************************************-->
+
+
+        <!--* FOMULARIO POST and DELETE-->
+    <section id="section-form">
+
+        <div class="info-div">
+
+
+        </div>
+
+        <!--?????????????????????????-->
+
+        <div id="form-formulario" class="info-div">
+
+
+            <form class="add-item" id="formulario">
+
+                <img src="{{ url_for('static', filename='img/content_img/svg/witcher_hat.svg')}}" alt="" width="220px" height="220px">
+
+                <br>
+                <br>
+
+                <h1>Add or Delete an Item</h1>
+
+                <!-- <input type="text" name="id" placeholder="Id Item" required/> -->
+                <input type="text" name="name" placeholder="Item Name" required/>
+                <input type="text" name="sell_in" placeholder="Sell in"/>
+                <input type="text" name="quality" placeholder="Quality"/>
+
+
+                <input type="submit" value="Añadir Item" class="button-border"/>
+
+                <input type="reset" value="Reset" class="button-border"/>
+
+                <input type="button" name="delete" value="Eliminar Item" class="button-border"/>
+
+
+            </form>
+
+        </div>
+
+        <!--?????????????????????????-->
+
+    </section>
+
+    <!--**************************************-->
+    
+        <!--IMAGEN DE FONDO SCROLLING, todo se hace en CSS respecto a aestá clase. Por eso este DIV está vacío-->
+        <div class="img-scroll img-scrolling2">
+            <img src="{{ url_for('static', filename='img/content_img/gifs/space_revolution2_gif.gif')}}" alt="" height="160px">
+        </div>
+    
+        
+        <!--**************************************-->
+
+    <!--* FOMULARIO-->
+    <section id="section-form">
+
+
+        <div id="form-formulario" class="info-div">
+
+        <form class="get-item" id="formulario">
+
+            <img src="{{ url_for('static', filename='img/content_img/svg/witcher_hat.svg')}}" alt="" width="220px" height="220px">
+
+                <br>
+                <br>
+
+            <h1>
+                Search Item By:
+            </h1>
+
+            <input type="text" name="name" id="name" placeholder="Item Name" required/>
+
+            <select name="selector">
+
+                <option value="name">Name</option>
+                <option value="quality">Quality</option>
+                <option value="sell_in">Sell in</option>
+
+            </select>
+
+            <input type="button" name="getItem" value="Get Item"/>
+
+
+
+        </form>
+
+    </div>
+
+
+
+    </section>
+
+
+
+<!--**************************************-->
+
+
+<!--**************************************-->
+
+
+                    <script>
+                        /* Generate Error Request HTML */
+function errorMessage(message) {
+
+    const listItems = document.querySelector('#listitems');
+
+    listItems.innerHTML = `
+    <div class="carta" id="error"> 
+        <div class="contenido">  
+            <div class="div-icon-user"> 
+                <img src="{{ url_for('static',filename='img/error-404.jpg') }}" class="user-icon" alt="">
+            </div>
+            <h4> Error: ${message} </h4>
+            <h5> Description: Al parecer la petición no ha funcionado </h5>
+        </div>
+    </div>
+    `
+}
+
+
+/***********************************************************/
+
+/* Get reference button of updatE_quality*/
+const updateQualityButton = document.querySelector("#update_quality");
+updateQualityButton.addEventListener("click", update_quality);
+
+
+function update_quality() {
+
+
+    /* const myRequest = new Request('/inventory', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        cache: 'default',
+    }); */
+
+    var miHeaders = new Headers();
+
+    var requestDetails = {
+        method: 'GET',
+        headers: miHeaders,
+        mode: 'cors',
+        cache: 'default'
+    };
+
+    fetch('http://127.0.0.1:5000/update_quality', requestDetails)
+    .then((response) => {
+        if(response.ok) {
+            console.log("Response Status:", response.status);
+            console.log("Reponse statuts text:", response.statusText);
+            response.json().then((json) => loadItems(json))
+        } else {
+            console.log("Response Status:", response.status);
+            console.log("Reponse statuts text:", response.statusText);  
+        }  
+    })
+    .catch((error) => {
+        //console.log(error.message);
+        errorMessage(error.message);
+    });
+}
+
+
+
+
+
+
+        /***********************************************/ 
+
+    /* Get reference button of updatE_quality*/
+    const inventoryButton = document.querySelector("#inventory");
+    inventoryButton.addEventListener("click", inventory); 
+
+    // Get stock
+    function inventory() {
+
+
+        var miHeaders = new Headers();
+
+        var requestDetails = {
+            method: 'GET',
+            headers: miHeaders,
+            mode: 'cors',
+            cache: 'default'
+        };
+
+        fetch('http://127.0.0.1:5000/inventory', requestDetails)
+        .then((response) => {
+            if(response.ok) {
+                console.log("Response Status:", response.status);
+                console.log("Reponse statuts text:", response.statusText);
+                response.json().then((json) => loadItems(json))
+            } else {
+                console.log("Response Status:", response.status);
+                console.log("Reponse statuts text:", response.statusText);  
+            }  
+        })
+        .catch((error) => {
+            //console.log(error.message);
+            errorMessage(error.message);
+        });
+}
+
+    // Get stock items
+    function loadItems(items) {
+
+        const listItems = document.querySelector('#listitems');
+
+        listItems.innerHTML = items.map((item, i) => {
+
+            item_card = ``
+
+            if (item.name == "+5 Dexterity Vest") {
+                item_card = `
+                <div class="carta" id="item${i}"> 
+                <div class="contenido">  
+                    <div class="div-icon-user"> 
+                        <img src="../static/img/content_img/gifs/bola_nieve_potter.gif" class="user-icon" alt="">
+                    </div>
+                    <h4> ${item.name} </h4> 
+                    <h5> Sell in: ${item.sell_in} </h5> 
+                    <h5> Quality: ${item.quality} </h5>
+                </div>
+            </div>
+                `
+            } 
+            
+            if (item.name == "Aged Brie") {
+                item_card = `
+                <div class="carta" id="item${i}"> 
+                <div class="contenido">  
+                    <div class="div-icon-user"> 
+                        <img src="../static/img/content_img/gifs/contadero_potter.gif" class="user-icon" alt="">
+                    </div>
+                    <h4> ${item.name} </h4> 
+                    <h5> Sell in: ${item.sell_in} </h5> 
+                    <h5> Quality: ${item.quality} </h5>
+                </div>
+            </div>
+                `
+            } 
+            
+            if (item.name == "Elixir of the Mongoose") {
+                item_card = `
+                <div class="carta" id="item${i}"> 
+                <div class="contenido">  
+                    <div class="div-icon-user"> 
+                        <img src="../static/img/content_img/gifs/diamante_rojo_potter.gif" class="user-icon" alt="">
+                    </div>
+                    <h4> ${item.name} </h4> 
+                    <h5> Sell in: ${item.sell_in} </h5> 
+                    <h5> Quality: ${item.quality} </h5>
+                </div>
+            </div>
+                `
+            } 
+            
+            if (item.name == "Sulfuras Hand of Ragnaros") {
+                item_card = `
+                <div class="carta" id="item${i}"> 
+                <div class="contenido">  
+                    <div class="div-icon-user"> 
+                        <img src="../static/img/content_img/gifs/fuego_harry_potter.gif" class="user-icon" alt="">
+                    </div>
+                    <h4> ${item.name} </h4> 
+                    <h5> Sell in: ${item.sell_in} </h5> 
+                    <h5> Quality: ${item.quality} </h5>
+                </div>
+            </div>
+                `
+            }
+
+            if (item.name == "Backstage passes to a TAFKAL80ETC concert") {
+                item_card = `
+                <div class="carta" id="item${i}"> 
+                <div class="contenido">  
+                    <div class="div-icon-user"> 
+                        <img src="../static/img/content_img/gifs/sopa_potter.gif" class="user-icon" alt="">
+                    </div>
+                    <h4> ${item.name} </h4> 
+                    <h5> Sell in: ${item.sell_in} </h5> 
+                    <h5> Quality: ${item.quality} </h5>
+                </div>
+            </div>
+                `
+            }
+
+            if (item.name == "Conjured Mana Cake") {
+                item_card = `
+                <div class="carta" id="item${i}"> 
+                <div class="contenido">  
+                    <div class="div-icon-user"> 
+                        <img src="../static/img/content_img/gifs/fuego_harry_potter.gif" class="user-icon" alt="">
+                    </div>
+                    <h4> ${item.name} </h4> 
+                    <h5> Sell in: ${item.sell_in} </h5> 
+                    <h5> Quality: ${item.quality} </h5>
+                </div>
+            </div>
+                `
+            }
+
+            return item_card;
+        }).join('');
+    }
+
+
+
+// FORM
+function logForm() {
+    let form = document.querySelector('.add-item');
+    console.log(
+        //form.elements.id.value,
+        form.elements.name.value,
+        form.elements.sell_in.value,
+        form.elements.quality.value);
+}
+
+
+// Reference to add_item button
+let form = document.querySelector('.add-item');
+form.addEventListener('submit', add_item);
+
+// ADD item
+function add_item() {
+
+    logForm();
+
+    let data = {
+        // id: this.elements.id.value,
+        name: this.elements.name.value,
+        sell_in: this.elements.sell_in.value,
+        quality: this.elements.quality.value
+    };
+
+    fetch('http://127.0.0.1:5000/items', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        cache: 'default'
+    })
+        .then((response) => {
+            if (response.ok) {
+                console.log("Response OK Status:", response.status);
+                console.log("Response OK status text:", response.statusText);
+            } else {
+                console.log("Response Status:", response.status);
+                console.log("Response Status text:", response.statusText);
+            }
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
+}
+
+
+// DELETE Item
+form.delete.addEventListener('click', deleteItem);
+
+function deleteItem() {
+
+    logForm();
+
+    let data = {
+        //id: form.elements.id.value,
+        name: form.elements.name.value,
+        sell_in: form.elements.sell_in.value,
+        quality: form.elements.quality.value
+    };
+
+    fetch('http://127.0.0.1:5000/items', {
+        method: 'DELETE',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then((response) => {
+            if (response.ok) {
+                console.log("Response OK Status:", response.status);
+                console.log("Response OK status text:", response.statusText);
+            } else {
+                console.log("Response Status:", response.status);
+                console.log("Response Status text:", response.statusText);
+            }
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
+}
+
+
+// GET item by NAME
+let item = document.querySelector('.get-item')
+item.addEventListener('click', getItem);
+
+function getItem() {
+
+    logFormGetItem();
+
+    //let data = {
+        //name: item.elements.name.value,
+    //};
+
+    let data;
+    let resource;
+
+    if (item.elements.selector.value == "name") {
+
+        data = `${item.elements.name.value}`;
+
+        resource = "name"
+
+    }
+
+    if (item.elements.selector.value == "quality") {
+
+        data = `${item.elements.name.value}`;
+
+        resource = "quality"
+
+    }
+
+    if (item.elements.selector.value == "sell_in") {
+
+        data = `${item.elements.name.value}`;
+
+        resource = "sell_in"
+
+    }
+
+    fetch(`http://127.0.0.1:5000/items/${resource}/${data}`
+        // , {
+        //     method: 'GET',
+        //     body: JSON.stringify(data),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }}
+    )
+        .then((response) => {
+            if (response.ok) {
+                console.log("Response OK Status:", response.status);
+                console.log("Response OK status text:", response.statusText);
+                response.json().then((json) => loadItems(json));
+            } else {
+                console.log("Response Status:", response.status);
+                console.log("Response Status text:", response.statusText);
+            }
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
+}
+
+
+// GET NAME
+function logFormGetItem() {
+    let form = document.querySelector('.get-item');
+    console.log(
+        form.elements.name.value)
+}
+
+
+
+
+                    </script>
+
+
+
+<!--**************************************-->
+
+
+<!--**************************************-->
+
+    <!--?????????????????????????-->
+    <!--? Style FORM-->
+    <style>
+/************************* */
+
+
+
+/************************* */
+/** Section Comments */
+
+
+#section-comments {
+    max-width:100%;
+    padding-left:1rem;
+    padding-right:1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url("../resources/gifs/space_revolution2_gif.gif");
+}
+
+
+#comments h2{
+    padding: 25px;
+    text-align: center;
+}
+
+
+#listitems {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+#listitems .carta {
+    display: flex;
+    width: 300px;
+    height: 400px;
+    background-color: rgba(91, 83, 85, 0.7);
+    margin: 20px;
+    box-shadow: 0 15px 35px rgba(35, 30, 31, 0.7);
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+#listitems .carta .contenido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+#listitems .carta:hover .contenido{
+    opacity: 1;
+}
+
+#listitems .carta:hover{
+    background-color: rgba(128, 117, 120, 0.7);
+}
+
+
+#listitems .carta .contenido .div-icon-user{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 10px solid rgba(0, 0, 0, 0.5);
+    margin-top: 25px;
+}
+
+#listitems .carta .contenido .div-icon-user img{
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#listitems .carta .contenido h4{
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 23px;
+    text-align: center;
+    margin: 20px 0 10px;
+    line-height: 1.1em;
+}
+
+#listitems .carta .contenido h5 {
+    font-size: 18px;
+    font-weight: 200;
+    text-transform: initial;
+}
+
+#listitems .carta .contenido p {
+    font-size: 15px;
+    font-weight: 200;
+    padding: 25px;
+}
+
+/** Media Query cuando el tamaño es maximo 1047px en la sección de comentarios */
+
+@media screen and (max-width:1047px) { 
+
+
+
+    #listitems {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    #listitems .carta { 
+        width: 240px;
+        height: 370px;
+    }
+
+    #listitems .carta .contenido .div-icon-user{ 
+        width: 120px;
+        height: 120px;
+    }
+
+    #listitems .carta .contenido h4{ 
+        font-size: 21px;
+    }
+
+    #listitems .carta .contenido h5 { 
+        font-size: 17px;
+    }
+
+    #listitems .carta .contenido p { 
+        font-size: 14px;
+    }
+}
+
+/** Media Query cuando el tamaño es maximo 1047px en la sección de comentarios */
+
+@media screen and (max-width:847px) { 
+
+
+    #listitems {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+    
+    }
+
+    #listitems .carta { 
+        width: 260px;
+        height: 370px;
+    }
+
+    #listitems .carta .contenido .div-icon-user{ 
+        width: 130px;
+        height: 130px;
+    }
+
+    #listitems .carta .contenido h4{ 
+        font-size: 18px;
+    }
+
+    #listitems .carta .contenido h5 { 
+        font-size: 14px;
+    }
+
+    #listitems .carta .contenido p { 
+        font-size: 12px;
+    }
+}
+
+/** Media Query cuando el tamaño es maximo 1047px en la sección de comentarios */
+
+@media screen and (max-width:576px) { 
+
+
+    #listitems {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #listitems .carta { 
+        width: 210px;
+        height: 330px;
+    }
+
+    #listitems .carta .contenido .div-icon-user{ 
+        width: 100px;
+        height: 100px;
+    }
+
+    #listitems .carta .contenido h4{ 
+        font-size: 18px;
+    }
+
+    #listitems .carta .contenido h5 { 
+        font-size: 14px;
+    }
+
+    #listitems .carta .contenido p { 
+        font-size: 12px;
+    }
+
+}
+
+
+/*********************************/
+/** BUTTONS *******************/
+.buttons-inventory {
+
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+
+
+
+
+/*********************************/
+/** FORMOLARIO *******************/
+
+
+#form-formulario {
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+}
+
+#formulario {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+#formulario h3 {
+    margin: 25px;
+}
+
+
+
+
+/************************* */
+/**INPUTS*************************/
+
+.border-button {
+    border: 2px solid #49a1f8;
+    background: #49a1f8;
+}
+
+input, select {
+
+    height: 40px;
+    background: none;
+    font-size: 15px;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    border: none;
+    outline: none;
+    letter-spacing: 2px;
+    padding: 10px;
+    width: 365px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+label {
+    padding: 15px;
+}
+
+input:focus {
+    border-bottom: 2px solid #fff;
+}
+
+textarea {
+    background: none;
+    height: 100px;
+    padding: 10px 0;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #999;
+    margin-bottom: 55px;
+    width: 365px;
+}
+
+
+textarea:focus,
+input:focus,
+select:focus,
+textarea:valid,
+input:valid,
+select:valid{
+    border-bottom: 2px solid #49a1f8;
+    top:-12;
+    left:0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 1.5s;
+}
+
+/** Si pasas el mouse por algún enlace del textarea e Input, se sombrea*/
+input:hover,
+textarea:hover,
+select:hover {
+    background: #424647;
+    transition: .5s;
+    padding: 6px;
+    border-bottom: 2px solid #49a1f8;
+    border-radius: 8px;
+}
+
+
+/** Media Query cuando el tamaño es maximo 576px en la sección del formulario */
+
+@media screen and (max-width:576px) { 
+
+    label {
+        font-size: 14px;
+    }
+    
+    input, select {
+        font-size: 14px;
+        padding: 20px;
+        width: 80%;
+    }
+
+    textarea {
+        font-size: 14px;
+        width: 80%;
+    }
+}
+
+
+
+/************************* */
+
+/************************* */
+/** Buttons Style */
+
+button {
+    background: none;
+    color: #cccc;
+    border: 1px solid #49a1f8;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 45px;
+    margin: 10px;
+    margin-left: 140px;
+}
+
+.login {
+    margin-top: 60px;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover {
+    background: #49a1f8;
+    cursor: pointer;
+}
+
+
+/** ******************************************/
+
+.img-scrolling1 img{
+    background-image: url('../static/img/content_img/gifs/space_revolution2_gif.gif');
+    width: 100%;
+    opacity: 0.40;
+}
+
+.img-scrolling2 img{
+    background-image: url('../static/img/content_img/gifs/space_revolution2_gif.gif');
+    width: 100%;
+    /* position: relative; */
+    opacity: 0.40;
+}
+
+
+/************************* */
+
+
+    </style>
+
+
+
+        {% endblock %}
+
+
+
+            <!--**************************************-->

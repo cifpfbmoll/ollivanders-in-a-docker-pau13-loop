@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>resources.resources_sql package &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="service package" href="service.html" />
+    <link rel="prev" title="resources.resources_mongo package" href="resources.resources_mongo.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="resources-resources-sql-package">
+<h1>resources.resources_sql package<a class="headerlink" href="#resources-resources-sql-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-resources.resources_sql.inventario">
+<span id="resources-resources-sql-inventario-module"></span><h2>resources.resources_sql.inventario module<a class="headerlink" href="#module-resources.resources_sql.inventario" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_sql.inventario.Inventario">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_sql.inventario.</span></code><code class="sig-name descname"><span class="pre">Inventario</span></code><a class="reference internal" href="_modules/resources/resources_sql/inventario.html#Inventario"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.inventario.Inventario" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_sql.inventario.Inventario.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'inventario'</span></em><a class="headerlink" href="#resources.resources_sql.inventario.Inventario.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.inventario.Inventario.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/inventario.html#Inventario.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.inventario.Inventario.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a list of all items.
+Makes a custom Response Object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a custom make_response() object with the List with items, each item is a dictionary</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.inventario.Inventario.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_sql.inventario.Inventario.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_sql.inventario.Inventario.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_sql.inventario.Inventario.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_sql.items">
+<span id="resources-resources-sql-items-module"></span><h2>resources.resources_sql.items module<a class="headerlink" href="#module-resources.resources_sql.items" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_sql.items.Items">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_sql.items.</span></code><code class="sig-name descname"><span class="pre">Items</span></code><a class="reference internal" href="_modules/resources/resources_sql/items.html#Items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.items.Items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py method">
+<dt id="resources.resources_sql.items.Items.delete">
+<code class="sig-name descname"><span class="pre">delete</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/items.html#Items.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.items.Items.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Let us delete an item/resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a custom make_response() object without a message, but the header of the response object have a message of the item has been deleted</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_sql.items.Items.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'items'</span></em><a class="headerlink" href="#resources.resources_sql.items.Items.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.items.Items.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/items.html#Items.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.items.Items.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get an item by its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item_name</strong> (<em>string</em>) – name of the item</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a custom make_response() object with with all item whose satified the criteria of hve the same name of the parameter</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.items.Items.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_sql.items.Items.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_sql.items.Items.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'DELETE',</span> <span class="pre">'GET',</span> <span class="pre">'POST',</span> <span class="pre">'PUT'}</span></em><a class="headerlink" href="#resources.resources_sql.items.Items.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.items.Items.parseRequest">
+<code class="sig-name descname"><span class="pre">parseRequest</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/items.html#Items.parseRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.items.Items.parseRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Let us validate values from the Request through “reqparse” and its object: RequestParser()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a Dictionary with the item already validatedº</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.items.Items.post">
+<code class="sig-name descname"><span class="pre">post</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/items.html#Items.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.items.Items.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Let us add a new item/resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a custom make_response() object with a message of the item has been added</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.items.Items.put">
+<code class="sig-name descname"><span class="pre">put</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/items.html#Items.put"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.items.Items.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Let us update the content of an item/resource</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a custom make_response() object without a message, but the header of the response object have a message of the item content has been updated</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_sql.quality">
+<span id="resources-resources-sql-quality-module"></span><h2>resources.resources_sql.quality module<a class="headerlink" href="#module-resources.resources_sql.quality" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_sql.quality.Quality">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_sql.quality.</span></code><code class="sig-name descname"><span class="pre">Quality</span></code><a class="reference internal" href="_modules/resources/resources_sql/quality.html#Quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.quality.Quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_sql.quality.Quality.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'quality'</span></em><a class="headerlink" href="#resources.resources_sql.quality.Quality.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.quality.Quality.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_quality</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/quality.html#Quality.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.quality.Quality.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets those items whose quality is the same as the value from the parameter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item_quality</strong> (<em>int</em>) – quality of the item</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a custom make_response() object with all item whose have the same quality</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.quality.Quality.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_sql.quality.Quality.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_sql.quality.Quality.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_sql.quality.Quality.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_sql.sellin">
+<span id="resources-resources-sql-sellin-module"></span><h2>resources.resources_sql.sellin module<a class="headerlink" href="#module-resources.resources_sql.sellin" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_sql.sellin.Sellin">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_sql.sellin.</span></code><code class="sig-name descname"><span class="pre">Sellin</span></code><a class="reference internal" href="_modules/resources/resources_sql/sellin.html#Sellin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.sellin.Sellin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_sql.sellin.Sellin.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'sellin'</span></em><a class="headerlink" href="#resources.resources_sql.sellin.Sellin.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.sellin.Sellin.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item_sell_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/sellin.html#Sellin.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.sellin.Sellin.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets those items whose sell_in is the same as the value from the parameter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>item_sell_in</strong> (<em>int</em>) – sell_in of the item</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a custom make_response() object with all item whose have the same sell_in</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.sellin.Sellin.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_sql.sellin.Sellin.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_sql.sellin.Sellin.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_sql.sellin.Sellin.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_sql.updateQuality">
+<span id="resources-resources-sql-updatequality-module"></span><h2>resources.resources_sql.updateQuality module<a class="headerlink" href="#module-resources.resources_sql.updateQuality" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_sql.updateQuality.UpdateQuality">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_sql.updateQuality.</span></code><code class="sig-name descname"><span class="pre">UpdateQuality</span></code><a class="reference internal" href="_modules/resources/resources_sql/updateQuality.html#UpdateQuality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.updateQuality.UpdateQuality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py attribute">
+<dt id="resources.resources_sql.updateQuality.UpdateQuality.endpoint">
+<code class="sig-name descname"><span class="pre">endpoint</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'updatequality'</span></em><a class="headerlink" href="#resources.resources_sql.updateQuality.UpdateQuality.endpoint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.updateQuality.UpdateQuality.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/updateQuality.html#UpdateQuality.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.updateQuality.UpdateQuality.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets a list of all items with their quality updated</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a custom make_response() object with items, each item is a dictionary</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="resources.resources_sql.updateQuality.UpdateQuality.mediatypes">
+<code class="sig-name descname"><span class="pre">mediatypes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#resources.resources_sql.updateQuality.UpdateQuality.mediatypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_sql.updateQuality.UpdateQuality.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_sql.updateQuality.UpdateQuality.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_sql.wellcome">
+<span id="resources-resources-sql-wellcome-module"></span><h2>resources.resources_sql.wellcome module<a class="headerlink" href="#module-resources.resources_sql.wellcome" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="resources.resources_sql.wellcome.Wellcome">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">resources.resources_sql.wellcome.</span></code><code class="sig-name descname"><span class="pre">Wellcome</span></code><a class="reference internal" href="_modules/resources/resources_sql/wellcome.html#Wellcome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.wellcome.Wellcome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_restful.Resource</span></code></p>
+<dl class="py method">
+<dt id="resources.resources_sql.wellcome.Wellcome.get">
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/resources/resources_sql/wellcome.html#Wellcome.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#resources.resources_sql.wellcome.Wellcome.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a message of Welcome Ollivanders</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a custom make_response() object with a dictionary with the wellcome message</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>make_response Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="resources.resources_sql.wellcome.Wellcome.methods">
+<code class="sig-name descname"><span class="pre">methods</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'GET'}</span></em><a class="headerlink" href="#resources.resources_sql.wellcome.Wellcome.methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of methods this view can handle.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-resources.resources_sql">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-resources.resources_sql" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Ollivander_double_db</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Ollivander_double_db</a><ul>
+  <li><a href="resources.html">resources package</a><ul>
+      <li>Previous: <a href="resources.resources_mongo.html" title="previous chapter">resources.resources_mongo package</a></li>
+      <li>Next: <a href="service.html" title="next chapter">service package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/resources.resources_sql.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
