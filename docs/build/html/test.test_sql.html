@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test.test_sql package &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test.test_sql.test_repository package" href="test.test_sql.test_repository.html" />
+    <link rel="prev" title="test.test_mongo package" href="test.test_mongo.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="test-test-sql-package">
+<h1>test.test_sql package<a class="headerlink" href="#test-test-sql-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="test.test_sql.test_repository.html">test.test_sql.test_repository package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_repository.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_repository.html#module-test.test_sql.test_repository.test_repository_db">test.test_sql.test_repository.test_repository_db module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_repository.html#module-test.test_sql.test_repository">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test.test_sql.test_resources.html">test.test_sql.test_resources package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources.test_add_item">test.test_sql.test_resources.test_add_item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources.test_delete_item">test.test_sql.test_resources.test_delete_item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources.test_get_items">test.test_sql.test_resources.test_get_items module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources.test_item">test.test_sql.test_resources.test_item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources.test_put_item">test.test_sql.test_resources.test_put_item module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources.test_quality">test.test_sql.test_resources.test_quality module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources.test_sellin">test.test_sql.test_resources.test_sellin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources.test_update_quality">test.test_sql.test_resources.test_update_quality module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.test_sql.test_resources.html#module-test.test_sql.test_resources">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-test.test_sql.conftest">
+<span id="test-test-sql-conftest-module"></span><h2>test.test_sql.conftest module<a class="headerlink" href="#module-test.test_sql.conftest" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="test.test_sql.conftest.TestConfig">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">test.test_sql.conftest.</span></code><code class="sig-name descname"><span class="pre">TestConfig</span></code><a class="reference internal" href="_modules/test/test_sql/conftest.html#TestConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_sql.conftest.TestConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>TestConfig Class: Class with the configuration constants of Testing Envronment of APP Flask</p>
+<dl class="py attribute">
+<dt id="test.test_sql.conftest.TestConfig.DEBUG">
+<code class="sig-name descname"><span class="pre">DEBUG</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#test.test_sql.conftest.TestConfig.DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="test.test_sql.conftest.TestConfig.ENV">
+<code class="sig-name descname"><span class="pre">ENV</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'test'</span></em><a class="headerlink" href="#test.test_sql.conftest.TestConfig.ENV" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="test.test_sql.conftest.TestConfig.SQLALCHEMY_TRACK_MODIFICATIONS">
+<code class="sig-name descname"><span class="pre">SQLALCHEMY_TRACK_MODIFICATIONS</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#test.test_sql.conftest.TestConfig.SQLALCHEMY_TRACK_MODIFICATIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="test.test_sql.conftest.TestConfig.TESTING">
+<code class="sig-name descname"><span class="pre">TESTING</span></code><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#test.test_sql.conftest.TestConfig.TESTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="test.test_sql.conftest.app">
+<code class="sig-prename descclassname"><span class="pre">test.test_sql.conftest.</span></code><code class="sig-name descname"><span class="pre">app</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_sql/conftest.html#app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_sql.conftest.app" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the APP Flask from the create_app() method from Factory of Controller Package</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields</dt>
+<dd class="field-odd"><p><em>Flask Intance</em> – Yields a APP Flask</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test.test_sql.conftest.client">
+<code class="sig-prename descclassname"><span class="pre">test.test_sql.conftest.</span></code><code class="sig-name descname"><span class="pre">client</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_sql/conftest.html#client"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_sql.conftest.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the test_client of APP Flask, where before of Yield sentence, it adds the basic items into database and models with the main goal of each test use this data/items to test it and after each test the data of models and database restart by default. This help us to isolate each test from another test</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app</strong> (<em>Flask instance</em>) – APP Flask</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>test_client</em> – Yields a test_client from APP Flask to test our test cases</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test.test_sql.conftest.db">
+<code class="sig-prename descclassname"><span class="pre">test.test_sql.conftest.</span></code><code class="sig-name descname"><span class="pre">db</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_sql/conftest.html#db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_sql.conftest.db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Database Object of SQLAlchemy, where before get the _db it’s open the app_context() and init the app in the DB and create all Models, after the Models and database is filled in with the basic items from loadInventory(), after each test the data of models and database restart by default. The scope of this fixture is for each test function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app</strong> (<em>flask instance</em>) – App Flask</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>SQLAlchemy Instance</em> – Yields a SQLAlchemy Object with the session init</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test.test_sql.conftest.session">
+<code class="sig-prename descclassname"><span class="pre">test.test_sql.conftest.</span></code><code class="sig-name descname"><span class="pre">session</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_sql/conftest.html#session"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_sql.conftest.session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Session fixture help us to do a transaction SQL for each test of repository test cases, this means that for each test function of repository package, session fixture opens a transaction in SQLAlchemy and Database MySQL where after finished the test, the transaction finished with a rollback, this means that all changes of each test actually don’t affect the models and database at the finished because of Transactions SQL. Due to this fixture is for each test function, then the scope is function and the autouse is True</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>db</strong> (<em>SQLAlchemy instance</em>) – It’s a SQLALchemy Object</p>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><p><em>SQLALchemy session</em> – Yields a session of the SQLAlchemy Object for each test function</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-test.test_sql.test_hello_world">
+<span id="test-test-sql-test-hello-world-module"></span><h2>test.test_sql.test_hello_world module<a class="headerlink" href="#module-test.test_sql.test_hello_world" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="test.test_sql.test_hello_world.test_hello_world">
+<code class="sig-prename descclassname"><span class="pre">test.test_sql.test_hello_world.</span></code><code class="sig-name descname"><span class="pre">test_hello_world</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test/test_sql/test_hello_world.html#test_hello_world"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test.test_sql.test_hello_world.test_hello_world" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-test.test_sql">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-test.test_sql" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Ollivander_double_db</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Ollivander_double_db</a><ul>
+  <li><a href="test.html">test package</a><ul>
+      <li>Previous: <a href="test.test_mongo.html" title="previous chapter">test.test_mongo package</a></li>
+      <li>Next: <a href="test.test_sql.test_repository.html" title="next chapter">test.test_sql.test_repository package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/test.test_sql.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

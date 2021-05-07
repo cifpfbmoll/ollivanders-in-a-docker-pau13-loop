@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>service.service_sql.service &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for service.service_sql.service</h1><div class="highlight"><pre>
+<span></span><span class="c1"># marshal_with for validate and filter fields</span>
+<span class="c1"># abort for check function</span>
+<span class="kn">from</span> <span class="nn">flask_restful</span> <span class="kn">import</span> <span class="n">marshal_with</span><span class="p">,</span> <span class="n">fields</span><span class="p">,</span> <span class="n">abort</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">g</span>
+
+<span class="c1"># Importamos el método get_db() para poder manipular la Base de Datos</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.db_connection</span> <span class="kn">import</span> <span class="n">get_db</span>
+
+<span class="c1"># Importamos el método createObjectItem() de repo.py para poder crear un objeto a partir de la info del item</span>
+<span class="kn">from</span> <span class="nn">repository.repository_sql.repo</span> <span class="kn">import</span> <span class="n">Factory</span>
+
+
+<div class="viewcode-block" id="Service"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service">[docs]</a><span class="k">class</span> <span class="nc">Service</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Service Class: This class contains all methods that let us filter, search, update, deleting our database, basically consist of a serie of methods that let us manipulate the dabase. For this reason, this class contains the logic of this manipulation of database. Service module let us There will be less coupling.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Estructura de campos que serán usados en el marshal_with()</span>
+    <span class="n">resource_fields</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">String</span><span class="p">,</span>
+        <span class="s2">&quot;sell_in&quot;</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>
+        <span class="s2">&quot;quality&quot;</span><span class="p">:</span> <span class="n">fields</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<div class="viewcode-block" id="Service.check_items"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.check_items">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">check_items</span><span class="p">(</span><span class="n">items</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the items are not empty or not, if it&#39;s empty throw an Abort()</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            items (list): List of items</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (list): If the list is not empty, returns the same list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">items</span><span class="p">:</span>
+            <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;There is not items that satisfied this criteria&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">items</span></div>
+
+<div class="viewcode-block" id="Service.filter_by_name"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.filter_by_name">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@marshal_with</span><span class="p">(</span><span class="n">resource_fields</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">filter_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let us filter an Item by the name of this item</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            name (string): Name of the Item</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: Returns a List of Items that satisfies the query of Items Query Model</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="c1"># itemsList = []</span>
+
+        <span class="c1"># Necesito crear un bucle debido a que el resultado de la QUERY es un objeto con todos los resultados.</span>
+        <span class="c1"># for item in g.Items.query.filter_by(name=name):</span>
+        <span class="c1">#     itemsList.append(item)</span>
+
+        <span class="k">return</span> <span class="n">Service</span><span class="o">.</span><span class="n">check_items</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)]</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Service.filter_by_sell_in"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.filter_by_sell_in">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@marshal_with</span><span class="p">(</span><span class="n">resource_fields</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">filter_by_sell_in</span><span class="p">(</span><span class="n">sell_in</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let us filter an Item by the sell_in of this item</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sell_in (int): Sell_in of the Item</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: Returns a List of Items that satisfies the query of Items Query Model, in this case. Those items whose have that sell_in</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="c1"># itemsList = []</span>
+
+        <span class="c1"># for item in g.Items.query.filter_by(sell_in=sell_in):</span>
+        <span class="c1">#     itemsList.append(item)</span>
+
+        <span class="k">return</span> <span class="n">Service</span><span class="o">.</span><span class="n">check_items</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">sell_in</span><span class="o">=</span><span class="n">sell_in</span><span class="p">)]</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Service.filter_by_quality"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.filter_by_quality">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@marshal_with</span><span class="p">(</span><span class="n">resource_fields</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">filter_by_quality</span><span class="p">(</span><span class="n">quality</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Let us filter an Item by the quality of this item</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            quality (int): quality of the Item</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: Returns a List of Items that satisfies the query of Items Query Model, in this case. Those items whose have that quality</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="c1"># itemsList = []</span>
+
+        <span class="c1"># for item in g.Items.query.filter_by(quality=quality):</span>
+        <span class="c1">#     itemsList.append(item)</span>
+
+        <span class="k">return</span> <span class="n">Service</span><span class="o">.</span><span class="n">check_items</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">quality</span><span class="o">=</span><span class="n">quality</span><span class="p">)]</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="Service.get_items"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.get_items">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="nd">@marshal_with</span><span class="p">(</span><span class="n">resource_fields</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_items</span><span class="p">():</span>
+
+        <span class="sd">&quot;&quot;&quot;Get All Items from Database</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (list): Returns a list with all Items</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="c1"># itemsList = []</span>
+
+        <span class="c1"># for item in g.Items.query.all():</span>
+        <span class="c1">#     itemsList.append(item)</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span></div>
+
+<div class="viewcode-block" id="Service.post_item"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.post_item">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">post_item</span><span class="p">(</span><span class="n">args_content</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a new item into de Database Ollivanders into the Items Table, don&#39;t return nothing</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            args_content (dict): Contains the dictionary from parse_args() method, which in the other module let us validate the Request object values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="n">add_item</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+            <span class="n">sell_in</span><span class="o">=</span><span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;sell_in&quot;</span><span class="p">],</span>
+            <span class="n">quality</span><span class="o">=</span><span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add_item</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Service.delete_item"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.delete_item">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">delete_item</span><span class="p">(</span><span class="n">args_content</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete an item into de Database Ollivanders into the Items Table, don&#39;t return nothing</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            args_content (dict): Contains the dictionary from parse_args() method, which in the other module let us validate the Request object values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="c1"># delete_item = g.Items.query.filter_by(name=args_content[&#39;name&#39;], sell_in=args_content[&#39;sell_in&#39;],quality=args_content[&#39;quality&#39;]).first()</span>
+
+        <span class="c1"># if not delete_item:</span>
+        <span class="c1">#     abort(404, message=&quot;Don&#39;t exist this item&quot;)</span>
+
+        <span class="c1"># else:</span>
+        <span class="c1"># db.session.delete(delete_item)</span>
+
+        <span class="c1"># db.session.commit()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">==</span> <span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;sell_in&quot;</span><span class="p">],</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">quality</span> <span class="o">==</span> <span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">],</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Service.put_item"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.put_item">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">put_item</span><span class="p">(</span><span class="n">id_item</span><span class="p">,</span> <span class="n">args_content</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the content of an item into de Database Ollivanders into the Items Table, don&#39;t return nothing</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            args_content (dict): Contains the dictionary from parse_args() method, which in the other module let us validate the Request object values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="n">item_by_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">id_item</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">item_by_id</span><span class="p">:</span>
+            <span class="n">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;Don&#39;t exist this item&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">item_by_id</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+            <span class="n">item_by_id</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">=</span> <span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;sell_in&quot;</span><span class="p">]</span>
+            <span class="n">item_by_id</span><span class="o">.</span><span class="n">quality</span> <span class="o">=</span> <span class="n">args_content</span><span class="p">[</span><span class="s2">&quot;quality&quot;</span><span class="p">]</span>
+
+            <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Service.update_quality"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.update_quality">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">update_quality</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;Update the quality of ALL items that we have in DataBase and after we return the entire Inventory to the Cliente</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            (list): Returns a list with all Items, each item is a dictionary</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">Items</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="c1"># Creamos el objeto Item a partir de la info de la Lista que insertamos en los párametros del método: createObjectItem()</span>
+            <span class="n">itemObject</span> <span class="o">=</span> <span class="n">Factory</span><span class="o">.</span><span class="n">createObjectItem</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">sell_in</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">quality</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Actualizamos la calidad del item</span>
+            <span class="n">itemObject</span><span class="o">.</span><span class="n">update_quality</span><span class="p">()</span>
+
+            <span class="c1"># Actualizamos los datos de cada item</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">sell_in</span> <span class="o">=</span> <span class="n">itemObject</span><span class="o">.</span><span class="n">get_sell_in</span><span class="p">()</span>
+            <span class="n">item</span><span class="o">.</span><span class="n">quality</span> <span class="o">=</span> <span class="n">itemObject</span><span class="o">.</span><span class="n">get_quality</span><span class="p">()</span>
+            <span class="c1"># Guardamos los datos actualizados</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">Service</span><span class="o">.</span><span class="n">get_items</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Service.get_user_by_id"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.get_user_by_id">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_user_by_id</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+
+        <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">user_id</span><span class="p">))</span></div>
+
+    <span class="c1"># @staticmethod</span>
+    <span class="c1"># def service_before_request():</span>
+
+    <span class="c1">#     get_db()</span>
+
+    <span class="c1">#     if &#39;user_id&#39; in session:</span>
+
+    <span class="c1">#         user = g.User.query.filter_by(username=session[&#39;user_id&#39;]).first()</span>
+
+    <span class="c1">#     else:</span>
+    <span class="c1">#         user = {&quot;name&quot;: &quot;Guest&quot;}</span>
+
+    <span class="c1">#     g.user_session = user</span>
+
+<div class="viewcode-block" id="Service.get_user_by_username"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.get_user_by_username">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_user_by_username</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+
+        <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">User</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Service.add_user"><a class="viewcode-back" href="../../../service.service_sql.html#service.service_sql.service.Service.add_user">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">add_user</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+
+        <span class="n">db</span> <span class="o">=</span> <span class="n">get_db</span><span class="p">()</span>
+
+        <span class="n">new_user</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span></div></div>
+
+    <span class="c1"># @staticmethod</span>
+    <span class="c1"># def get_user_session():</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Ollivander_double_db</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

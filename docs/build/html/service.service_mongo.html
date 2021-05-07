@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>service.service_mongo package &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="service.service_sql package" href="service.service_sql.html" />
+    <link rel="prev" title="service package" href="service.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="service-service-mongo-package">
+<h1>service.service_mongo package<a class="headerlink" href="#service-service-mongo-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-service.service_mongo.service">
+<span id="service-service-mongo-service-module"></span><h2>service.service_mongo.service module<a class="headerlink" href="#module-service.service_mongo.service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.service_mongo.service.Service">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">service.service_mongo.service.</span></code><code class="sig-name descname"><span class="pre">Service</span></code><a class="reference internal" href="_modules/service/service_mongo/service.html#Service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_mongo.service.Service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="service.service_mongo.service.Service.delete_item">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">delete_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_mongo/service.html#Service.delete_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_mongo.service.Service.delete_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate through all the items saved into the db and delete the first item matching the criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>dictionary</em>) – parameters of the item that must be deleted from the db</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_mongo.service.Service.get_item">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_mongo/service.html#Service.get_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_mongo.service.Service.get_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate thorgh thd db and get a single item saved into the db matching the name of the requested item</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>string</em>) – name of the item we are looking for into the db</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return a collection that we must transform into a list that contains all the elements that had match the criteria and the elements that contain the list will be represented as a dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>item(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_mongo.service.Service.get_quality">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_quality</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quality</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_mongo/service.html#Service.get_quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_mongo.service.Service.get_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate trhough all the items saved inside the db and return all the elements that match the criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>quality</strong> (<em>int</em>) – quality of the element we are looking for inside the db</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return a collection that we must transform into a list that contains all the elements that had match the criteria and the elements that contain the list will be represented as a dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>item(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_mongo.service.Service.get_sell_in">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_sell_in</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sell_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_mongo/service.html#Service.get_sell_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_mongo.service.Service.get_sell_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate trhough all the items saved inside the db and return all the elements that match the criteria</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sell_in</strong> (<em>int</em>) – sell_in of the element we are looking for inside the db</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return a collection that we must transform into a list that contains all the elements that had match the criteria and the elements that contain the list will be represented as a dictionary</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>item(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_mongo.service.Service.get_stock">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_stock</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_mongo/service.html#Service.get_stock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_mongo.service.Service.get_stock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all the items saved into the db</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Return a list with all the items saved into the data
+base, each item inside the list will be represented as a
+dictionary</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_mongo.service.Service.post_item">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">post_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_mongo/service.html#Service.post_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_mongo.service.Service.post_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new non existent item inside the db</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>dictionary</em>) – Get the new item represented as a dictionary that must be inserted into the db</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="service.service_mongo.service.Service.resource_fields">
+<code class="sig-name descname"><span class="pre">resource_fields</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'_id':</span> <span class="pre">&lt;class</span> <span class="pre">'flask_restful.fields.String'&gt;,</span> <span class="pre">'name':</span> <span class="pre">&lt;class</span> <span class="pre">'flask_restful.fields.String'&gt;,</span> <span class="pre">'quality':</span> <span class="pre">&lt;class</span> <span class="pre">'flask_restful.fields.Integer'&gt;,</span> <span class="pre">'sell_in':</span> <span class="pre">&lt;class</span> <span class="pre">'flask_restful.fields.Integer'&gt;}</span></em><a class="headerlink" href="#service.service_mongo.service.Service.resource_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.service_mongo.service.Service.update_quality">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">update_quality</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_mongo/service.html#Service.update_quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_mongo.service.Service.update_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the quality and the sell_in of all the items that are inserted into the db at this moment. Each element is updated by his own implemented logic</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Return a list with all the items saved into the db, each item inside the list will be represented as a dictionary</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service.service_mongo">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-service.service_mongo" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Ollivander_double_db</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Ollivander_double_db</a><ul>
+  <li><a href="service.html">service package</a><ul>
+      <li>Previous: <a href="service.html" title="previous chapter">service package</a></li>
+      <li>Next: <a href="service.service_sql.html" title="next chapter">service.service_sql package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/service.service_mongo.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

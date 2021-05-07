@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>service.service_sql package &#8212; Ollivanders-API-REST 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="setup module" href="setup.html" />
+    <link rel="prev" title="service.service_mongo package" href="service.service_mongo.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="service-service-sql-package">
+<h1>service.service_sql package<a class="headerlink" href="#service-service-sql-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-service.service_sql.service">
+<span id="service-service-sql-service-module"></span><h2>service.service_sql.service module<a class="headerlink" href="#module-service.service_sql.service" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="service.service_sql.service.Service">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">service.service_sql.service.</span></code><code class="sig-name descname"><span class="pre">Service</span></code><a class="reference internal" href="_modules/service/service_sql/service.html#Service"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Service Class: This class contains all methods that let us filter, search, update, deleting our database, basically consist of a serie of methods that let us manipulate the dabase. For this reason, this class contains the logic of this manipulation of database. Service module let us There will be less coupling.</p>
+<dl class="py method">
+<dt id="service.service_sql.service.Service.add_user">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">add_user</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.add_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.add_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.check_items">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">check_items</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.check_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.check_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the items are not empty or not, if it’s empty throw an Abort()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>items</strong> (<em>list</em>) – List of items</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>If the list is not empty, returns the same list</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.delete_item">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">delete_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args_content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.delete_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.delete_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an item into de Database Ollivanders into the Items Table, don’t return nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args_content</strong> (<em>dict</em>) – Contains the dictionary from parse_args() method, which in the other module let us validate the Request object values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.filter_by_name">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">filter_by_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.filter_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.filter_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Let us filter an Item by the name of this item</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>string</em>) – Name of the Item</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a List of Items that satisfies the query of Items Query Model</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.filter_by_quality">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">filter_by_quality</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quality</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.filter_by_quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.filter_by_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Let us filter an Item by the quality of this item</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>quality</strong> (<em>int</em>) – quality of the Item</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a List of Items that satisfies the query of Items Query Model, in this case. Those items whose have that quality</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.filter_by_sell_in">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">filter_by_sell_in</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sell_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.filter_by_sell_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.filter_by_sell_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Let us filter an Item by the sell_in of this item</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sell_in</strong> (<em>int</em>) – Sell_in of the Item</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a List of Items that satisfies the query of Items Query Model, in this case. Those items whose have that sell_in</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.get_items">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_items</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.get_items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.get_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get All Items from Database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a list with all Items</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.get_user_by_id">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_user_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.get_user_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.get_user_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.get_user_by_username">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_user_by_username</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.get_user_by_username"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.get_user_by_username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.post_item">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">post_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args_content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.post_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.post_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new item into de Database Ollivanders into the Items Table, don’t return nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args_content</strong> (<em>dict</em>) – Contains the dictionary from parse_args() method, which in the other module let us validate the Request object values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.put_item">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">put_item</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id_item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args_content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.put_item"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.put_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the content of an item into de Database Ollivanders into the Items Table, don’t return nothing</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args_content</strong> (<em>dict</em>) – Contains the dictionary from parse_args() method, which in the other module let us validate the Request object values</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="service.service_sql.service.Service.resource_fields">
+<code class="sig-name descname"><span class="pre">resource_fields</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'name':</span> <span class="pre">&lt;class</span> <span class="pre">'flask_restful.fields.String'&gt;,</span> <span class="pre">'quality':</span> <span class="pre">&lt;class</span> <span class="pre">'flask_restful.fields.Integer'&gt;,</span> <span class="pre">'sell_in':</span> <span class="pre">&lt;class</span> <span class="pre">'flask_restful.fields.Integer'&gt;}</span></em><a class="headerlink" href="#service.service_sql.service.Service.resource_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="service.service_sql.service.Service.update_quality">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">update_quality</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/service/service_sql/service.html#Service.update_quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#service.service_sql.service.Service.update_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the quality of ALL items that we have in DataBase and after we return the entire Inventory to the Cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a list with all Items, each item is a dictionary</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>(list)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-service.service_sql">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-service.service_sql" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Ollivanders-API-REST</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Ollivander_double_db</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api.html">api module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controller.html">controller package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="domain.html">domain package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository.html">repository package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">resources package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="service.html">service package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">Ollivander_double_db</a><ul>
+  <li><a href="service.html">service package</a><ul>
+      <li>Previous: <a href="service.service_mongo.html" title="previous chapter">service.service_mongo package</a></li>
+      <li>Next: <a href="setup.html" title="next chapter">setup module</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Mateo Garcia Gonzalez, Pau Llinas Amat.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/service.service_sql.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

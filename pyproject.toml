@@ -1,0 +1,115 @@
+### SYSTEM ###
+[build-system]
+requires =["setuptools >= 35.0.2", "wheel >= 0.29.0"]
+build-backend = "setuptools.build_meta"
+
+### TOX ###
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = py37
+# Indicate a directory outside of .tox where to allocate the egg zip
+distdir=./dist-egg
+isolated_build = True
+
+# The interpreters to be used must be installed in the machine
+[testenv]
+deps =
+    -rrequirements.txt
+
+    # Here we have to add all the dependencies not included within the
+    # requirements. This ones are the dependencies that we need for CI not
+    # for development
+
+    #### This dependency is added to avoid import error
+    mongoengine
+
+    #### Continuous Integration dependencies
+    black
+    coverage
+    bandit
+
+commands =
+
+    #### What does the commands ####
+        ### 1.-Watch the differences & format code style in local environment
+        ### (and virtual)
+        ### 2.- Run pytest and get a percentatge of the code that has been
+        ### checked
+        ### 3.- Get a code annotation, create a directory in the local
+        ### environment, not the virtual one
+        ### 4.- Watch the report
+        ### 5.- Check for vulnerabilities
+        ### 6.- Create distribution package with wheel (inside dist directory)
+
+    #### ! Commands start here ! ####
+    black .
+    coverage run -m pytest
+    coverage annotate -d ./coverage_annotation
+    coverage report -m
+#    bandit -r ./controller
+    python setup.py sdist bdist_wheel
+"""
+
+
+### COVERAGE ###
+[tool.coverage.run]
+branch = true
+omit = [
+    # omit tox config directory from coverage
+    '.tox/*',
+    './static/',
+    './templates/',
+]
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    'pragma: no cover',
+
+    # Don't complain about missing debug-only code:
+    'def __repr__',
+
+    # Don't complain if non-runnable code isn't run:
+    'if __name__ == __main__:'
+]
+
+ignore_errors = false
+
+[tool.coverage.html]
+# Indicate where to allocate the html file with coverage info
+directory = 'coverage_html_report'
+
+
+### BLACK ###
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | \.vscode
+  | _build
+  | buck-out
+  | build
+  | dist
+  | venv
+  | coverage_annotation
+  # Added some more
+  | .pytest_cache
+  # The following are specific to Black, you probably don't want those.
+  | blib2to3
+  | tests/data
+  | profiling
+  # Project Directories
+  | static
+  | templates
+)/
+'''
